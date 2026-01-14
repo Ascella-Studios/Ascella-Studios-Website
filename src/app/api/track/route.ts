@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { promises as fs } from "fs";
 import path from "path";
 import { Client } from "@hubspot/api-client";
-import { FilterOperatorEnum } from "@hubspot/api-client/lib/codegen/crm/contacts";
+import { PublicUpdateSubscriptionStatusRequestLegalBasisEnum } from "@hubspot/api-client/lib/codegen/communication_preferences";
 
 interface TrackEvent {
   event: "impression" | "signup";
@@ -24,6 +24,8 @@ const ANALYTICS_FILE = path.join(process.cwd(), "data", "analytics.json");
 
 async function subscribeToNewsletter(email: string, productName: string): Promise<void> {
   const hubspotToken = process.env.HUBSPOT_PRIVATE_APP_TOKEN;
+  const subscriptionId = process.env.HUBSPOT_SUBSCRIPTION_ID;
+
   if (!hubspotToken) {
     console.warn("HUBSPOT_PRIVATE_APP_TOKEN not configured, skipping newsletter signup");
     return;
@@ -31,49 +33,32 @@ async function subscribeToNewsletter(email: string, productName: string): Promis
 
   const hubspotClient = new Client({ accessToken: hubspotToken });
 
-  // Check if contact already exists
-  let contactId: string | null = null;
+  // First, create the contact if they don't exist
   try {
-    const searchResponse = await hubspotClient.crm.contacts.searchApi.doSearch({
-      filterGroups: [
-        {
-          filters: [
-            {
-              propertyName: "email",
-              operator: FilterOperatorEnum.Eq,
-              value: email,
-            },
-          ],
-        },
-      ],
-      properties: ["email"],
-      limit: 1,
-    });
-
-    if (searchResponse.total > 0 && searchResponse.results[0]) {
-      contactId = searchResponse.results[0].id;
-    }
-  } catch {
-    // Search failed, will try to create new contact
-  }
-
-  if (contactId) {
-    // Update existing contact to ensure they're subscribed
-    await hubspotClient.crm.contacts.basicApi.update(contactId, {
-      properties: {
-        hs_marketable_status: "true",
-        newsletter_signup_source: productName,
-      },
-    });
-  } else {
-    // Create new contact subscribed to newsletter
     await hubspotClient.crm.contacts.basicApi.create({
       properties: {
         email: email,
-        hs_marketable_status: "true",
         newsletter_signup_source: productName,
       },
     });
+  } catch {
+    // Contact likely already exists, that's fine
+  }
+
+  // Subscribe to newsletter using Communication Preferences API
+  if (subscriptionId) {
+    try {
+      await hubspotClient.communicationPreferences.statusApi.subscribe({
+        emailAddress: email,
+        subscriptionId: subscriptionId,
+        legalBasis: PublicUpdateSubscriptionStatusRequestLegalBasisEnum.ConsentWithNotice,
+        legalBasisExplanation: `Subscribed via ${productName} product page`,
+      });
+    } catch (subscribeError) {
+      console.error("Failed to subscribe contact:", subscribeError);
+    }
+  } else {
+    console.warn("HUBSPOT_SUBSCRIPTION_ID not configured, contact created but not subscribed to newsletter");
   }
 }
 
