@@ -91,7 +91,7 @@ export default function ContactPage() {
                   </svg>
                 </a>
                 <a
-                  href="https://github.com/ascellastudios"
+                  href="https://github.com/Ascella-Studios"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-lg bg-card border border-border flex items-center justify-center text-foreground/70 hover:text-sky hover:border-sky transition-colors"
