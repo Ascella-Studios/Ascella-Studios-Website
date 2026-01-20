@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
+import { getNewestApp } from '@/data/apps';
 
 export const metadata: Metadata = {
   title: "Ascella Studios | Apps that elevate",
@@ -14,6 +16,8 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+  const newestApp = getNewestApp();
+
   return (
     <div className="bg-background">
       {/* Hero Section */}
@@ -47,6 +51,131 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* New Release Section */}
+      {newestApp && (
+        <section className="py-16 lg:py-24 bg-card">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="flex items-center justify-center gap-3 mb-8">
+              <div className="h-px w-8 bg-gradient-to-r from-transparent to-sky"></div>
+              <h2 className="text-sm font-semibold text-sky tracking-wider uppercase">
+                {newestApp.comingSoon ? 'Coming Soon' : 'New Release'}
+              </h2>
+              <div className="h-px w-8 bg-gradient-to-l from-transparent to-sky"></div>
+            </div>
+
+            <div className="relative bg-background border border-border rounded-3xl overflow-hidden">
+              <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 p-8 lg:p-12">
+                {/* Left Column - App Info */}
+                <div className="flex flex-col justify-center">
+                  {newestApp.comingSoon && (
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky/10 text-sky text-xs font-medium w-fit mb-6">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-sky"></span>
+                      </span>
+                      {newestApp.status}
+                    </div>
+                  )}
+
+                  <h3 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+                    {newestApp.name}
+                  </h3>
+
+                  <p className="text-xl text-foreground/90 font-medium mb-4">
+                    {newestApp.tagline}
+                  </p>
+
+                  <p className="text-foreground/70 mb-8 leading-relaxed">
+                    {newestApp.description}
+                  </p>
+
+                  {/* Tech Stack Pills */}
+                  <div className="flex flex-wrap gap-2 mb-8">
+                    {newestApp.tech.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-3 py-1.5 bg-foreground/5 border border-border rounded-full text-sm font-medium text-foreground/70"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* CTA Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Link
+                      href="/apps"
+                      className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-sky text-white font-medium rounded-lg hover:bg-sky/90 transition-colors"
+                    >
+                      {newestApp.comingSoon ? 'Learn More' : 'View App'}
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M13 7l5 5m0 0l-5 5m5-5H6"
+                        />
+                      </svg>
+                    </Link>
+                    {newestApp.comingSoon && (
+                      <Link
+                        href="/contact"
+                        className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-border text-foreground font-medium rounded-lg hover:bg-foreground/5 transition-colors"
+                      >
+                        Get Notified
+                      </Link>
+                    )}
+                  </div>
+                </div>
+
+                {/* Right Column - App Visual */}
+                <div className="flex items-center justify-center lg:justify-end">
+                  <div className="relative">
+                    {/* Large Logo Display */}
+                    <div className={`relative w-64 h-64 lg:w-80 lg:h-80 rounded-3xl bg-gradient-to-br ${newestApp.gradient} p-1 shadow-2xl`}>
+                      <div className="w-full h-full rounded-3xl bg-background/5 backdrop-blur-sm flex items-center justify-center overflow-hidden">
+                        {newestApp.logo ? (
+                          <Image
+                            src={newestApp.logo}
+                            alt={`${newestApp.name} logo`}
+                            width={256}
+                            height={256}
+                            className="w-3/4 h-3/4 object-contain"
+                          />
+                        ) : (
+                          <svg
+                            className="w-32 h-32 text-white"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={1.5}
+                              d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                            />
+                          </svg>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Decorative Elements */}
+                    <div className={`absolute -z-10 top-8 -right-8 w-64 h-64 bg-gradient-to-br ${newestApp.gradient} opacity-20 blur-3xl rounded-full`}></div>
+                    <div className={`absolute -z-10 -bottom-8 -left-8 w-64 h-64 bg-gradient-to-tr ${newestApp.gradient} opacity-20 blur-3xl rounded-full`}></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Features Section */}
       <section className="py-24 bg-card">
