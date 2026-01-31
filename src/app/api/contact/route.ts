@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Client } from '@hubspot/api-client';
 import { FilterOperatorEnum } from '@hubspot/api-client/lib/codegen/crm/contacts';
-import { AssociationSpecAssociationCategoryEnum } from '@hubspot/api-client/lib/codegen/crm/objects/notes';
 
 interface ContactFormData {
   name: string;
@@ -49,65 +48,79 @@ export async function POST(request: NextRequest) {
     const firstName = nameParts[0];
     const lastName = nameParts.slice(1).join(' ') || '';
 
-    const formattedMessage = `Subject: ${subject || 'No subject'}\n\n${message}`;
+    // Format message with subject
+    const formattedMessage = subject
+      ? `[${subject}] ${message}`
+      : message;
 
-    // Try to find existing contact by email
-    let contactId: string | null = null;
-
+    // Create or update contact using HubSpot's upsert-like behavior
+    // We use createOrUpdate by first trying to get, then create or update
     try {
+      // Try to get existing contact by email
       const searchResponse = await hubspotClient.crm.contacts.searchApi.doSearch({
-        filterGroups: [
+        filterGroups: [{
+          filters: [{
+            propertyName: 'email',
+            operator: FilterOperatorEnum.Eq,
+            value: email,
+          }],
+        }],
+        properties: ['email', 'firstname', 'lastname'],
+        limit: 1,
+      });
+
+      let contactId: string;
+
+      if (searchResponse.total > 0 && searchResponse.results[0]) {
+        // Contact exists - update with name
+        contactId = searchResponse.results[0].id;
+        await hubspotClient.crm.contacts.basicApi.update(
+          contactId,
           {
-            filters: [
+            properties: {
+              firstname: firstName,
+              lastname: lastName,
+            },
+          }
+        );
+      } else {
+        // Create new contact
+        const newContact = await hubspotClient.crm.contacts.basicApi.create({
+          properties: {
+            email,
+            firstname: firstName,
+            lastname: lastName,
+          },
+        });
+        contactId = newContact.id;
+      }
+
+      // Create a Note engagement with the message
+      const noteBody = subject
+        ? `**Subject:** ${subject}\n\n${message}`
+        : message;
+
+      await hubspotClient.crm.objects.notes.basicApi.create({
+        properties: {
+          hs_timestamp: new Date().toISOString(),
+          hs_note_body: noteBody,
+        },
+        associations: [
+          {
+            to: { id: contactId },
+            types: [
               {
-                propertyName: 'email',
-                operator: FilterOperatorEnum.Eq,
-                value: email,
+                associationCategory: 'HUBSPOT_DEFINED',
+                associationTypeId: 202, // Note to Contact association
               },
             ],
           },
         ],
-        properties: ['email'],
-        limit: 1,
       });
-
-      if (searchResponse.total > 0 && searchResponse.results[0]) {
-        contactId = searchResponse.results[0].id;
-      }
-    } catch {
-      // Search failed, will try to create new contact
+    } catch (hubspotError) {
+      console.error('HubSpot API error:', hubspotError);
+      throw hubspotError;
     }
-
-    if (!contactId) {
-      // New contact - create them first
-      const newContact = await hubspotClient.crm.contacts.basicApi.create({
-        properties: {
-          firstname: firstName,
-          lastname: lastName,
-          email: email,
-        },
-      });
-      contactId = newContact.id;
-    }
-
-    // Create a note with their message (for both new and existing contacts)
-    await hubspotClient.crm.objects.notes.basicApi.create({
-      properties: {
-        hs_timestamp: new Date().toISOString(),
-        hs_note_body: `Contact form submission:\n\n${formattedMessage}`,
-      },
-      associations: [
-        {
-          to: { id: contactId },
-          types: [
-            {
-              associationCategory: AssociationSpecAssociationCategoryEnum.HubspotDefined,
-              associationTypeId: 202, // Note to Contact association
-            },
-          ],
-        },
-      ],
-    });
 
     return NextResponse.json(
       { success: true, message: "Thank you for your message! We'll be in touch soon." },

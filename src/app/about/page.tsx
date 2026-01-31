@@ -286,19 +286,20 @@ export default function AboutPage() {
       {/* CTA Section */}
       <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="bg-gradient-to-r from-sky via-teal to-mint rounded-3xl p-12 text-center relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-transparent to-black/10"></div>
+          <div className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-sky/10 via-teal/10 to-mint/10 border border-teal/20 p-12 text-center hover:border-teal/40 transition-all duration-300">
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-sky/20 rounded-full blur-3xl -translate-y-1/2 group-hover:bg-sky/30 transition-colors duration-500"></div>
+            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-mint/20 rounded-full blur-3xl translate-y-1/2 group-hover:bg-mint/30 transition-colors duration-500"></div>
             <div className="relative">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Let's Build Something Great
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                Let&apos;s Build Something Great
               </h2>
-              <p className="text-white/90 mb-8 max-w-2xl mx-auto text-lg">
-                Have an idea? Want to collaborate? We'd love to hear from you and explore
+              <p className="text-foreground/70 mb-8 max-w-2xl mx-auto text-lg">
+                Have an idea? Want to collaborate? We&apos;d love to hear from you and explore
                 how we can help bring your vision to life.
               </p>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-dark font-medium rounded-lg hover:bg-light transition-colors text-lg"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-sky via-teal to-mint text-white font-medium rounded-lg hover:opacity-90 transition-opacity text-lg"
               >
                 Get in Touch
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

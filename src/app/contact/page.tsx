@@ -21,19 +21,19 @@ export default function ContactPage() {
           {/* Contact Info */}
           <div>
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Get in{' '}
+              Let&apos;s{' '}
               <span className="bg-gradient-to-r from-sky via-teal to-mint bg-clip-text text-transparent">
-                Touch
+                Talk
               </span>
             </h1>
             <p className="text-lg text-foreground/70 mb-10">
-              Have a question, idea, or want to work together? Let&apos;s talk.
+              Got a project in mind? Questions about what we do? Just want to say hi? We&apos;re all ears.
             </p>
 
             <h2 className="sr-only">Contact Information</h2>
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-sky/10 flex items-center justify-center flex-shrink-0">
+            <div className="space-y-4">
+              <div className="group flex items-start gap-4 p-4 rounded-2xl bg-gradient-to-br from-sky/5 to-transparent border border-sky/10 hover:border-sky/30 transition-all duration-300">
+                <div className="w-12 h-12 rounded-xl bg-sky/10 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
                   <svg className="w-6 h-6 text-sky" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
@@ -49,8 +49,8 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-teal/10 flex items-center justify-center flex-shrink-0">
+              <div className="group flex items-start gap-4 p-4 rounded-2xl bg-gradient-to-br from-teal/5 to-transparent border border-teal/10 hover:border-teal/30 transition-all duration-300">
+                <div className="w-12 h-12 rounded-xl bg-teal/10 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
                   <svg className="w-6 h-6 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -62,28 +62,28 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-mint/10 flex items-center justify-center flex-shrink-0">
+              <div className="group flex items-start gap-4 p-4 rounded-2xl bg-gradient-to-br from-mint/5 to-transparent border border-mint/10 hover:border-mint/30 transition-all duration-300">
+                <div className="w-12 h-12 rounded-xl bg-mint/10 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
                   <svg className="w-6 h-6 text-mint" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">Response Time</h3>
-                  <p className="text-foreground/70">Within 24 hours</p>
+                  <p className="text-foreground/70">Usually within 24 hours</p>
                 </div>
               </div>
             </div>
 
             {/* Social Links */}
             <div className="mt-10">
-              <h3 className="font-semibold text-foreground mb-4">Follow Us</h3>
-              <div className="flex gap-4">
+              <h3 className="font-semibold text-foreground mb-4">Find us elsewhere</h3>
+              <div className="flex gap-3">
                 <a
                   href="https://x.com/ascellastudios"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-lg bg-card border border-border flex items-center justify-center text-foreground/70 hover:text-sky hover:border-sky transition-colors"
+                  className="w-11 h-11 rounded-xl bg-gradient-to-br from-sky/10 to-sky/5 border border-sky/20 flex items-center justify-center text-foreground/70 hover:text-sky hover:border-sky/40 transition-all duration-300"
                   aria-label="X (Twitter)"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -94,7 +94,7 @@ export default function ContactPage() {
                   href="https://github.com/Ascella-Studios"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-lg bg-card border border-border flex items-center justify-center text-foreground/70 hover:text-sky hover:border-sky transition-colors"
+                  className="w-11 h-11 rounded-xl bg-gradient-to-br from-teal/10 to-teal/5 border border-teal/20 flex items-center justify-center text-foreground/70 hover:text-teal hover:border-teal/40 transition-all duration-300"
                   aria-label="GitHub"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -105,7 +105,7 @@ export default function ContactPage() {
                   href="https://linkedin.com/company/ascellastudios"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-lg bg-card border border-border flex items-center justify-center text-foreground/70 hover:text-sky hover:border-sky transition-colors"
+                  className="w-11 h-11 rounded-xl bg-gradient-to-br from-mint/10 to-mint/5 border border-mint/20 flex items-center justify-center text-foreground/70 hover:text-mint hover:border-mint/40 transition-all duration-300"
                   aria-label="LinkedIn"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">

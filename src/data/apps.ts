@@ -17,23 +17,23 @@ export const apps: App[] = [
   {
     id: 'ghostlyclips',
     name: 'GhostlyClips',
-    tagline: 'Create viral short-form videos in minutes',
+    tagline: 'AI-powered faceless video generator for TikTok and Reels',
     description:
-      'An AI-powered SaaS platform that generates faceless TikTok and Reels content. Enter a topic, select a vibe, and let AI handle the script, voiceover, captions, and editing.',
-    status: 'In Development',
+      'Generate faceless short-form videos in minutes. Enter a topic, pick a vibe, and GhostlyClips handles the script, voiceover, animated captions, and background media—all in a simple 6-step wizard.',
+    status: 'Coming Q1 2026',
     statusColor: 'sky',
     logo: '/logos/ghostlyclips.png',
     features: [
       'AI script generation optimized for viral content',
       'Natural voiceovers with multiple voice styles',
-      'Animated captions with TikTok-style effects',
-      'Custom backgrounds with AI generation',
-      'Niche-specific templates for high engagement',
+      'Animated captions synced to voiceover',
+      'Background media compositing',
+      'Complete 6-step video creation wizard',
     ],
     tech: ['Next.js', 'Remotion', 'OpenAI', 'Stripe'],
     gradient: 'from-indigo-500 via-violet-500 to-purple-500',
     comingSoon: true,
-    releaseDate: '2026-01-20', // Most recent release
+    releaseDate: '2026-03-01', // Target Q1 2026
   },
 ];
 

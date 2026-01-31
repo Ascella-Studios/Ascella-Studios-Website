@@ -24,7 +24,7 @@ export default function TermsPage() {
             </span>
           </h1>
           <p className="text-foreground/70 mb-12">
-            Last updated: January 2025
+            Last updated: January 2026
           </p>
 
           <div className="prose prose-lg max-w-none">

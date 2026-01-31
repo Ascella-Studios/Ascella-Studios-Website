@@ -46,9 +46,10 @@ export default function ContactForm() {
 
   if (status === 'success') {
     return (
-      <div className="bg-card rounded-2xl p-8 shadow-sm border border-border">
-        <div className="text-center py-8">
-          <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-mint/10 flex items-center justify-center">
+      <div className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-mint/10 to-mint/5 border border-mint/20 p-8">
+        <div className="absolute top-0 right-0 w-48 h-48 bg-mint/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+        <div className="relative text-center py-8">
+          <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-mint/20 flex items-center justify-center">
             <svg
               className="w-8 h-8 text-mint"
               fill="none"
@@ -81,8 +82,10 @@ export default function ContactForm() {
   }
 
   return (
-    <div className="bg-card rounded-2xl p-8 shadow-sm border border-border">
-      <form onSubmit={handleSubmit} className="space-y-6">
+    <div className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-sky/10 to-teal/5 border border-sky/20 p-8">
+      <div className="absolute top-0 right-0 w-64 h-64 bg-sky/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+      <div className="absolute bottom-0 left-0 w-48 h-48 bg-teal/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+      <form onSubmit={handleSubmit} className="relative space-y-6">
         {status === 'error' && (
           <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400 text-sm">
             {errorMessage}

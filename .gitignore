@@ -40,6 +40,9 @@ yarn-error.log*
 # claude code context
 CLAUDE.md
 
+# internal docs
+/docs
+
 # vercel
 .vercel
 
