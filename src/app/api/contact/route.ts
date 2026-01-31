@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Client } from '@hubspot/api-client';
 import { FilterOperatorEnum } from '@hubspot/api-client/lib/codegen/crm/contacts';
+import { AssociationSpecAssociationCategoryEnum } from '@hubspot/api-client/lib/codegen/crm/objects/notes';
 
 interface ContactFormData {
   name: string;
@@ -110,7 +111,7 @@ export async function POST(request: NextRequest) {
             to: { id: contactId },
             types: [
               {
-                associationCategory: 'HUBSPOT_DEFINED',
+                associationCategory: AssociationSpecAssociationCategoryEnum.HubspotDefined,
                 associationTypeId: 202, // Note to Contact association
               },
             ],
