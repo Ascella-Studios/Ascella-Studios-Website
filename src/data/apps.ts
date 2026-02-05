@@ -11,9 +11,31 @@ export interface App {
   gradient: string;
   comingSoon: boolean;
   releaseDate?: string; // ISO date string for sorting
+  externalUrl?: string; // External URL for live apps
 }
 
 export const apps: App[] = [
+  {
+    id: 'homehelpersco',
+    name: 'HomeHelpersCo',
+    tagline: 'Connect with trusted local contractors',
+    description:
+      'A lead generation platform connecting homeowners with reliable local service businesses. Contractors get free leads—no signup fees, monthly fees, or per-lead charges—just quality leads sent directly to their inbox.',
+    status: 'Live',
+    statusColor: 'green',
+    logo: '/logos/homehelpersco.png',
+    features: [
+      'Free leads for contractors—no hidden fees',
+      'Email notifications when local homeowners need help',
+      'Quick 2-minute profile setup for pros',
+      'Connect homeowners with quality local contractors',
+    ],
+    tech: ['Next.js', 'Lead Generation'],
+    gradient: 'from-emerald-500 via-teal-500 to-cyan-500',
+    comingSoon: false,
+    releaseDate: '2026-02-01',
+    externalUrl: 'https://www.homehelpersco.com/',
+  },
   {
     id: 'ghostlyclips',
     name: 'GhostlyClips',

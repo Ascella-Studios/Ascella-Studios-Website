@@ -42,8 +42,8 @@ export default function AppsPage() {
                 <div className="absolute top-0 right-0 w-64 h-64 bg-sky/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-sky/20 transition-colors duration-500"></div>
                 <div className="relative">
                   {/* Status Badge */}
-                  {app.comingSoon && (
-                    <div className="absolute top-0 right-0">
+                  <div className="absolute top-0 right-0">
+                    {app.comingSoon ? (
                       <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky/10 text-sky text-xs font-medium border border-sky/20">
                         <span className="relative flex h-2 w-2">
                           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky opacity-75"></span>
@@ -51,8 +51,15 @@ export default function AppsPage() {
                         </span>
                         {app.status}
                       </div>
-                    </div>
-                  )}
+                    ) : (
+                      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-500/10 text-green-500 text-xs font-medium border border-green-500/20">
+                        <span className="relative flex h-2 w-2">
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                        </span>
+                        {app.status}
+                      </div>
+                    )}
+                  </div>
 
                   {/* App Icon */}
                   <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${app.gradient} mb-6 flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform duration-300`}>
@@ -140,7 +147,7 @@ export default function AppsPage() {
                   </div>
 
                   {/* CTA Button */}
-                  {app.comingSoon && (
+                  {app.comingSoon ? (
                     <a
                       href={`/waitlist/${app.id}`}
                       className="inline-flex items-center gap-2 text-sky font-medium hover:text-sky/80 transition-colors"
@@ -160,7 +167,29 @@ export default function AppsPage() {
                         />
                       </svg>
                     </a>
-                  )}
+                  ) : app.externalUrl ? (
+                    <a
+                      href={app.externalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-green-500 font-medium hover:text-green-400 transition-colors"
+                    >
+                      Visit Site
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                        />
+                      </svg>
+                    </a>
+                  ) : null}
                 </div>
               </div>
             ))}
