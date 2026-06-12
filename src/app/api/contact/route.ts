@@ -49,11 +49,6 @@ export async function POST(request: NextRequest) {
     const firstName = nameParts[0];
     const lastName = nameParts.slice(1).join(' ') || '';
 
-    // Format message with subject
-    const formattedMessage = subject
-      ? `[${subject}] ${message}`
-      : message;
-
     // Create or update contact using HubSpot's upsert-like behavior
     // We use createOrUpdate by first trying to get, then create or update
     try {

@@ -14,50 +14,10 @@ export interface App {
   externalUrl?: string; // External URL for live apps
 }
 
-export const apps: App[] = [
-  {
-    id: 'homehelpersco',
-    name: 'HomeHelpersCo',
-    tagline: 'Connect with trusted local contractors',
-    description:
-      'A lead generation platform connecting homeowners with reliable local service businesses. Contractors get free leads—no signup fees, monthly fees, or per-lead charges—just quality leads sent directly to their inbox.',
-    status: 'Live',
-    statusColor: 'green',
-    logo: '/logos/homehelpersco.png',
-    features: [
-      'Free leads for contractors—no hidden fees',
-      'Email notifications when local homeowners need help',
-      'Quick 2-minute profile setup for pros',
-      'Connect homeowners with quality local contractors',
-    ],
-    tech: ['Next.js', 'Lead Generation'],
-    gradient: 'from-emerald-500 via-teal-500 to-cyan-500',
-    comingSoon: false,
-    releaseDate: '2026-02-01',
-    externalUrl: 'https://www.homehelpersco.com/',
-  },
-  {
-    id: 'ghostlyclips',
-    name: 'GhostlyClips',
-    tagline: 'AI-powered faceless video generator for TikTok and Reels',
-    description:
-      'Generate faceless short-form videos in minutes. Enter a topic, pick a vibe, and GhostlyClips handles the script, voiceover, animated captions, and background media—all in a simple 6-step wizard.',
-    status: 'Coming Q1 2026',
-    statusColor: 'sky',
-    logo: '/logos/ghostlyclips.png',
-    features: [
-      'AI script generation optimized for viral content',
-      'Natural voiceovers with multiple voice styles',
-      'Animated captions synced to voiceover',
-      'Background media compositing',
-      'Complete 6-step video creation wizard',
-    ],
-    tech: ['Next.js', 'Remotion', 'OpenAI', 'Stripe'],
-    gradient: 'from-indigo-500 via-violet-500 to-purple-500',
-    comingSoon: true,
-    releaseDate: '2026-03-01', // Target Q1 2026
-  },
-];
+// App catalog — empty until the first app ships.
+// To add an app: add an entry here, drop its logo in /public/logos/{id}.png,
+// and re-create the /apps page (see CLAUDE.md "Launch checklist").
+export const apps: App[] = [];
 
 // Get the newest app (by releaseDate)
 export const getNewestApp = (): App | null => {

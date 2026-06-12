@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ascella Studios Website
+
+Marketing website for [Ascella Studios](https://ascellastudios.com) — an independent, one-person app studio making small, carefully built apps for everyday life.
+
+The studio is pre-launch (no shipped apps yet), so the site is intentionally small: home, about, and contact, plus infrastructure that activates when the first app ships.
+
+## Stack
+
+- [Next.js 16](https://nextjs.org) (App Router) + TypeScript
+- Tailwind CSS 4
+- next-themes (dark/light mode)
+- HubSpot (contact form + email signups)
+- Deployed on Vercel (auto-deploys on push to `main`)
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
+cp .env.local.example .env.local   # add your HubSpot private app token
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Other commands: `npm run build` (production build), `npm run lint` (ESLint).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Structure
 
-## Learn More
+- `src/app/` — pages (home, about, contact, privacy, terms, 404)
+- `src/app/[appname]/privacy|terms` — dynamic per-app legal pages, served from `legal/{appname}/*.html`
+- `src/app/waitlist/` — per-app waitlist landing pages (empty until launch)
+- `src/components/Waitlist.tsx` — reusable email-capture component (HubSpot static segments)
+- `src/data/apps.ts` — app catalog (empty until the first app ships)
 
-To learn more about Next.js, take a look at the following resources:
+## ⚠️ Automation Contract
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The Ascella app starter kit deploys files **into this repo** at app-submission time:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. `legal/{appname}/privacy.html` + `terms.html` → served by the dynamic legal routes
+2. A generated waitlist page → `src/app/waitlist/{appname}/page.tsx`
+3. Commits and pushes (Vercel auto-deploys)
 
-## Deploy on Vercel
+Generated pages depend on `Waitlist.tsx`'s prop API, `/api/waitlist`, and the
+`text-foreground` / `bg-background` / `border-border` design tokens — don't
+rename or remove these. `legal/` and `src/app/waitlist/` are empty between
+launches by design; each contains a README with details.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## HubSpot
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Contact form creates/updates a contact and attaches the message as a Note
+- "Follow the Build" signup (home page) adds contacts to the **Ascella Updates** static segment (ILS ID 13)
+- Required token scopes are listed in `.env.local.example`

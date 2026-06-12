@@ -12,14 +12,14 @@ export const metadata: Metadata = {
     template: "%s | Ascella Studios",
   },
   description:
-    "Ascella Studios designs and builds apps that make a difference—whether it's simplifying your day, solving a real problem, or helping you do more with less.",
+    "Ascella Studios is an independent app studio making small, carefully built apps for everyday life—software that solves real problems, loads fast, and respects your time.",
   keywords: [
+    "indie app studio",
     "app development",
     "mobile apps",
     "web apps",
     "software studio",
     "Ascella Studios",
-    "UI/UX design",
   ],
   authors: [{ name: "Ascella Studios" }],
   creator: "Ascella Studios",
@@ -31,13 +31,13 @@ export const metadata: Metadata = {
     siteName: "Ascella Studios",
     title: "Ascella Studios | Apps that elevate",
     description:
-      "Ascella Studios designs and builds apps that make a difference—whether it's simplifying your day, solving a real problem, or helping you do more with less.",
+      "Ascella Studios is an independent app studio making small, carefully built apps for everyday life—software that solves real problems, loads fast, and respects your time.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Ascella Studios | Apps that elevate",
     description:
-      "Ascella Studios designs and builds apps that make a difference—whether it's simplifying your day, solving a real problem, or helping you do more with less.",
+      "Ascella Studios is an independent app studio making small, carefully built apps for everyday life—software that solves real problems, loads fast, and respects your time.",
   },
   robots: {
     index: true,

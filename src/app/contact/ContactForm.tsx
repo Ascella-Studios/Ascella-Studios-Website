@@ -154,7 +154,7 @@ export default function ContactForm() {
             value={formData.message}
             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
             className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:border-sky focus:ring-2 focus:ring-sky/20 outline-none transition-colors resize-none"
-            placeholder="Tell us about your project..."
+            placeholder="What's on your mind?"
             disabled={status === 'submitting'}
           />
         </div>

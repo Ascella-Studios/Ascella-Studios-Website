@@ -84,7 +84,7 @@ export default async function Image() {
               lineHeight: 1.5,
             }}
           >
-            Designing and building apps that make a difference
+            Small, carefully built apps for everyday life
           </p>
         </div>
 

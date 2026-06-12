@@ -4,11 +4,11 @@ import ContactForm from './ContactForm';
 export const metadata: Metadata = {
   title: 'Contact',
   description:
-    'Get in touch with Ascella Studios. Have a question, idea, or want to work together? We respond within 24 hours.',
+    'Get in touch with Ascella Studios. Questions, app ideas, or just saying hi—we respond within 24 hours.',
   openGraph: {
     title: 'Contact Ascella Studios',
     description:
-      'Get in touch with Ascella Studios. Have a question, idea, or want to work together? We respond within 24 hours.',
+      'Get in touch with Ascella Studios. Questions, app ideas, or just saying hi—we respond within 24 hours.',
     url: 'https://ascellastudios.com/contact',
   },
 };
@@ -27,7 +27,7 @@ export default function ContactPage() {
               </span>
             </h1>
             <p className="text-lg text-foreground/70 mb-10">
-              Got a project in mind? Questions about what we do? Just want to say hi? We&apos;re all ears.
+              Got an app idea? A problem that needs solving? Just want to say hi? We&apos;re all ears.
             </p>
 
             <h2 className="sr-only">Contact Information</h2>
