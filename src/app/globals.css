@@ -1,20 +1,31 @@
 @import "tailwindcss";
 
+/* dark: utilities follow the next-themes class, not the OS preference */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #F8FAFC;
   --foreground: #0F172A;
-  --card: #ffffff;
-  --border: #e2e8f0;
+  --card: #FFFFFF;
+  --border: #E2E8F0;
 }
 
 html.dark {
-  --background: #0F172A;
-  --foreground: #F8FAFC;
-  --card: #1e293b;
-  --border: #334155;
+  --background: #0A0F1E;
+  --foreground: #F1F5F9;
+  --card: #101626;
+  --border: #1E293B;
+  color-scheme: dark;
 }
 
 @theme inline {
+  /* Surface tokens as real Tailwind colors so opacity modifiers work */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-border: var(--border);
+
+  /* Brand tokens — required by Footer and automation-generated pages */
   --color-sky: #38BDF8;
   --color-teal: #2DD4BF;
   --color-mint: #4ADE80;
@@ -24,36 +35,22 @@ html.dark {
   --font-mono: var(--font-geist-mono);
 }
 
+@utility text-gradient {
+  background-image: linear-gradient(
+    to right,
+    var(--color-sky),
+    var(--color-teal),
+    var(--color-mint)
+  );
+  background-clip: text;
+  color: transparent;
+}
+
 body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
   transition: background-color 0.2s, color 0.2s;
-}
-
-/* Theme-aware utility classes */
-.bg-background {
-  background-color: var(--background);
-}
-
-.bg-card {
-  background-color: var(--card);
-}
-
-.text-foreground {
-  color: var(--foreground);
-}
-
-.border-border {
-  border-color: var(--border);
-}
-
-.text-foreground\/70 {
-  color: color-mix(in srgb, var(--foreground) 70%, transparent);
-}
-
-.hover\:bg-border:hover {
-  background-color: var(--border);
 }
 
 /* Focus styles for accessibility */
@@ -80,4 +77,142 @@ select:focus-visible {
 
 .skip-link:focus {
   top: 0;
+}
+
+/* ---------------------------------------------------------------- */
+/* Aurora background — slow-drifting gradient blobs + film grain     */
+/* ---------------------------------------------------------------- */
+
+.aurora {
+  mask-image: linear-gradient(to bottom, black 55%, transparent 98%);
+  -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 98%);
+}
+
+.aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  width: 60vw;
+  height: 60vw;
+  min-width: 480px;
+  min-height: 480px;
+  will-change: transform;
+}
+
+.aurora-1 {
+  top: -20%;
+  left: -12%;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--color-sky) 28%, transparent),
+    transparent 70%
+  );
+  animation: aurora-drift-1 26s ease-in-out infinite alternate;
+}
+
+.aurora-2 {
+  top: -25%;
+  right: -15%;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--color-teal) 22%, transparent),
+    transparent 70%
+  );
+  animation: aurora-drift-2 34s ease-in-out infinite alternate;
+}
+
+.aurora-3 {
+  bottom: -30%;
+  left: 25%;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--color-mint) 14%, transparent),
+    transparent 70%
+  );
+  animation: aurora-drift-3 42s ease-in-out infinite alternate;
+}
+
+/* Light theme: dampen the wash so type stays crisp */
+html:not(.dark) .aurora-blob {
+  opacity: 0.45;
+}
+
+@keyframes aurora-drift-1 {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(10vw, 8vh, 0) scale(1.15); }
+}
+
+@keyframes aurora-drift-2 {
+  from { transform: translate3d(0, 0, 0) scale(1.1); }
+  to   { transform: translate3d(-12vw, 10vh, 0) scale(0.95); }
+}
+
+@keyframes aurora-drift-3 {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(8vw, -8vh, 0) scale(1.2); }
+}
+
+.aurora-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+html:not(.dark) .aurora-grain {
+  opacity: 0.03;
+}
+
+/* Quieter variant for inner-page headers */
+.aurora-subtle {
+  mask-image: linear-gradient(to bottom, black 30%, transparent 90%);
+  -webkit-mask-image: linear-gradient(to bottom, black 30%, transparent 90%);
+}
+
+.aurora-subtle .aurora-blob {
+  opacity: 0.5;
+}
+
+html:not(.dark) .aurora-subtle .aurora-blob {
+  opacity: 0.3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-blob {
+    animation: none;
+  }
+}
+
+/* ---------------------------------------------------------------- */
+/* Legal page typography (privacy/terms)                             */
+/* ---------------------------------------------------------------- */
+
+.legal h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 1rem;
+}
+
+.legal p {
+  color: color-mix(in srgb, var(--foreground) 70%, transparent);
+  line-height: 1.75;
+}
+
+.legal ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  color: color-mix(in srgb, var(--foreground) 70%, transparent);
+  line-height: 1.75;
+}
+
+.legal ul li + li {
+  margin-top: 0.5rem;
+}
+
+.legal a {
+  color: var(--color-sky);
+}
+
+.legal a:hover {
+  text-decoration: underline;
 }

@@ -43,14 +43,14 @@ const social = [
 
 export default function Footer() {
   return (
-    <footer className="bg-dark text-light py-12" role="contentinfo">
+    <footer className="border-t border-border bg-background py-12" role="contentinfo">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div>
-            <span className="text-xl font-bold bg-gradient-to-r from-sky via-teal to-mint bg-clip-text text-transparent">
+            <span className="text-xl font-bold text-gradient">
               Ascella Studios
             </span>
-            <p className="text-gray-400 mt-2 text-sm">
+            <p className="text-foreground/60 mt-2 text-sm">
               Apps that elevate.
             </p>
             <div className="flex gap-4 mt-4">
@@ -60,7 +60,7 @@ export default function Footer() {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-sky transition-colors"
+                  className="text-foreground/60 hover:text-sky transition-colors"
                   aria-label={item.name}
                 >
                   {item.icon}
@@ -75,7 +75,7 @@ export default function Footer() {
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-gray-400 hover:text-sky transition-colors text-sm"
+                    className="text-foreground/60 hover:text-sky transition-colors text-sm"
                   >
                     {item.name}
                   </Link>
@@ -85,7 +85,7 @@ export default function Footer() {
           </nav>
         </div>
 
-        <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-500 text-sm">
+        <div className="border-t border-border mt-8 pt-8 text-center text-foreground/40 text-sm">
           <div className="flex flex-wrap justify-center gap-4 mb-4">
             {legal.map((item) => (
               <Link
@@ -97,6 +97,9 @@ export default function Footer() {
               </Link>
             ))}
           </div>
+          <p className="text-foreground/40 text-xs mb-2">
+            An arm of Frontier Forge Technologies
+          </p>
           <p>&copy; {new Date().getFullYear()} Ascella Studios. All rights reserved.</p>
         </div>
       </div>

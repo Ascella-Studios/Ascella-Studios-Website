@@ -14,7 +14,7 @@ export default async function Image() {
     (
       <div
         style={{
-          background: 'linear-gradient(135deg, #0F172A 0%, #1e293b 100%)',
+          background: '#0A0F1E',
           width: '100%',
           height: '100%',
           display: 'flex',
@@ -22,17 +22,44 @@ export default async function Image() {
           alignItems: 'center',
           justifyContent: 'center',
           fontFamily: 'system-ui, sans-serif',
+          position: 'relative',
         }}
       >
-        {/* Gradient accent */}
+        {/* Aurora washes */}
         <div
           style={{
             position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            height: '8px',
-            background: 'linear-gradient(90deg, #38BDF8, #2DD4BF, #4ADE80)',
+            top: '-200px',
+            left: '-150px',
+            width: '700px',
+            height: '700px',
+            borderRadius: '50%',
+            background:
+              'radial-gradient(closest-side, rgba(56, 189, 248, 0.25), transparent 70%)',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            top: '-250px',
+            right: '-100px',
+            width: '650px',
+            height: '650px',
+            borderRadius: '50%',
+            background:
+              'radial-gradient(closest-side, rgba(45, 212, 191, 0.2), transparent 70%)',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '-300px',
+            left: '350px',
+            width: '700px',
+            height: '700px',
+            borderRadius: '50%',
+            background:
+              'radial-gradient(closest-side, rgba(74, 222, 128, 0.12), transparent 70%)',
           }}
         />
 
@@ -47,12 +74,11 @@ export default async function Image() {
             padding: '0 80px',
           }}
         >
-          {/* Logo/Brand name */}
           <h1
             style={{
               fontSize: '72px',
               fontWeight: 700,
-              color: '#ffffff',
+              color: '#F1F5F9',
               margin: 0,
               letterSpacing: '-2px',
             }}
@@ -60,7 +86,6 @@ export default async function Image() {
             Ascella Studios
           </h1>
 
-          {/* Tagline with gradient */}
           <p
             style={{
               fontSize: '36px',
@@ -74,11 +99,10 @@ export default async function Image() {
             Apps that elevate
           </p>
 
-          {/* Description */}
           <p
             style={{
               fontSize: '24px',
-              color: 'rgba(255, 255, 255, 0.7)',
+              color: '#94A3B8',
               margin: '32px 0 0 0',
               maxWidth: '800px',
               lineHeight: 1.5,
@@ -101,7 +125,7 @@ export default async function Image() {
           <span
             style={{
               fontSize: '18px',
-              color: 'rgba(255, 255, 255, 0.5)',
+              color: 'rgba(241, 245, 249, 0.5)',
             }}
           >
             ascellastudios.com

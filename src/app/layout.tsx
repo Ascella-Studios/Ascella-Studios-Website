@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
@@ -12,13 +12,14 @@ export const metadata: Metadata = {
     template: "%s | Ascella Studios",
   },
   description:
-    "Ascella Studios is an independent app studio making small, carefully built apps for everyday life—software that solves real problems, loads fast, and respects your time.",
+    "Ascella Studios is the consumer apps arm of Frontier Forge Technologies—small, carefully built apps for everyday life that solve real problems, load fast, and respect your time.",
   keywords: [
-    "indie app studio",
+    "consumer app studio",
     "app development",
     "mobile apps",
     "web apps",
-    "software studio",
+    "consumer apps",
+    "Frontier Forge Technologies",
     "Ascella Studios",
   ],
   authors: [{ name: "Ascella Studios" }],
@@ -31,18 +32,22 @@ export const metadata: Metadata = {
     siteName: "Ascella Studios",
     title: "Ascella Studios | Apps that elevate",
     description:
-      "Ascella Studios is an independent app studio making small, carefully built apps for everyday life—software that solves real problems, loads fast, and respects your time.",
+      "Ascella Studios is the consumer apps arm of Frontier Forge Technologies—small, carefully built apps for everyday life that solve real problems, load fast, and respect your time.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Ascella Studios | Apps that elevate",
     description:
-      "Ascella Studios is an independent app studio making small, carefully built apps for everyday life—software that solves real problems, loads fast, and respects your time.",
+      "Ascella Studios is the consumer apps arm of Frontier Forge Technologies—small, carefully built apps for everyday life that solve real problems, load fast, and respect your time.",
   },
   robots: {
     index: true,
     follow: true,
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0A0F1E",
 };
 
 export default function RootLayout({

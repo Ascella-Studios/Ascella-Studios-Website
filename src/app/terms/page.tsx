@@ -18,16 +18,13 @@ export default function TermsPage() {
       <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Terms of{' '}
-            <span className="bg-gradient-to-r from-sky via-teal to-mint bg-clip-text text-transparent">
-              Service
-            </span>
+            Terms of <span className="text-gradient">Service</span>
           </h1>
           <p className="text-foreground/70 mb-12">
             Last updated: January 2026
           </p>
 
-          <div className="prose prose-lg max-w-none">
+          <div className="legal">
             <div className="space-y-8">
               <section>
                 <h2 className="text-2xl font-semibold text-foreground mb-4">Agreement to Terms</h2>

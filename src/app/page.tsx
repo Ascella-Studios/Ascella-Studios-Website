@@ -1,6 +1,8 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import Waitlist from '@/components/Waitlist';
+import AuroraBackground from '@/components/AuroraBackground';
+import Container from '@/components/Container';
+import Button from '@/components/Button';
 
 const ASCELLA_UPDATES_LIST_ID = '13';
 
@@ -23,7 +25,7 @@ const beliefs = [
   {
     title: 'Small is a strength.',
     description:
-      'One person who sweats every detail beats a committee shipping compromises. Being small means every pixel gets cared about.',
+      'A small team that sweats every detail beats a committee shipping compromises. Nothing here gets built by quota—every screen has someone’s name on it.',
   },
 ];
 
@@ -31,39 +33,35 @@ export default function Home() {
   return (
     <div className="bg-background">
       {/* Hero Section */}
-      <section className="min-h-[calc(100vh-4rem)] flex flex-col justify-center relative">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 flex-1 flex items-center">
+      <section className="min-h-[calc(100vh-4rem)] flex flex-col justify-center relative overflow-hidden">
+        <AuroraBackground />
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 flex-1 flex items-center">
           <div className="text-center w-full">
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-foreground/50 mb-6">
+              The consumer apps arm of Frontier Forge Technologies
+            </p>
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-foreground tracking-tight">
-              Apps that{' '}
-              <span className="bg-gradient-to-r from-sky via-teal to-mint bg-clip-text text-transparent">
-                elevate
-              </span>
+              Apps that <span className="text-gradient">elevate</span>
             </h1>
             <p className="mt-8 text-lg md:text-xl text-foreground/70 max-w-2xl mx-auto leading-relaxed">
-              Ascella Studios is an independent studio making small, carefully
-              built apps for everyday life&mdash;software that solves real problems,
-              loads fast, and doesn&apos;t make you want to throw your phone.
+              We make small, carefully built apps for everyday life&mdash;software
+              that solves real problems, loads fast, and doesn&apos;t make you
+              want to throw your phone. The first one is in the works, and one
+              email gets you launch day.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="#follow"
-                className="px-6 py-3 bg-sky text-white font-medium rounded-lg hover:bg-sky/90 transition-colors text-center"
-              >
+              <Button variant="primary" href="#follow">
                 Follow the Build
-              </a>
-              <Link
-                href="/contact"
-                className="px-6 py-3 border border-foreground text-foreground font-medium rounded-lg hover:bg-foreground hover:text-background transition-colors text-center"
-              >
+              </Button>
+              <Button variant="outline" href="/contact">
                 Get in Touch
-              </Link>
+              </Button>
             </div>
           </div>
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2">
           <a
             href="#beliefs"
             className="text-foreground/50 hover:text-foreground/70 transition-colors"
@@ -88,15 +86,15 @@ export default function Home() {
       </section>
 
       {/* What We Believe */}
-      <section id="beliefs" className="py-24 lg:py-32 scroll-mt-16">
-        <div className="mx-auto max-w-3xl px-6 lg:px-8">
+      <section id="beliefs" className="py-24 lg:py-32 scroll-mt-24">
+        <Container size="sm">
           <h2 className="text-sm font-semibold text-sky tracking-wider uppercase mb-12">
             What we believe
           </h2>
-          <div className="space-y-14">
+          <div className="space-y-10">
             {beliefs.map((belief, i) => (
-              <div key={belief.title} className="flex gap-6">
-                <span className="text-foreground/30 font-mono text-lg pt-1.5 select-none">
+              <div key={belief.title} className="flex gap-6 border-t border-border pt-10">
+                <span className="font-mono text-sm text-sky/60 pt-2 select-none">
                   0{i + 1}
                 </span>
                 <div>
@@ -110,12 +108,12 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Follow the Build */}
-      <section id="follow" className="py-24 lg:py-32 bg-card scroll-mt-16">
-        <div className="mx-auto max-w-5xl px-6 lg:px-8">
+      <section id="follow" className="py-24 lg:py-32 border-y border-border bg-card/50 scroll-mt-24">
+        <Container size="md">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-sm font-semibold text-sky tracking-wider uppercase mb-4">
@@ -125,9 +123,10 @@ export default function Home() {
                 We&apos;re building our first app right now.
               </h3>
               <p className="text-foreground/70 text-lg leading-relaxed">
-                No fake hype, no vaporware&mdash;just one app being built with care.
-                Leave your email and you&apos;ll get one message when it ships, and
-                maybe a few honest updates from the workbench along the way.
+                No fake hype, no vaporware&mdash;one app, built with care, shipping
+                when it&apos;s right. Leave your email and you get exactly one
+                message on launch day, plus a few honest updates from the
+                workbench in between.
               </p>
             </div>
             <Waitlist
@@ -135,81 +134,58 @@ export default function Home() {
               source="follow-the-build"
               title="Follow the Build"
               description="One email when our first app ships. A few honest updates in between. No spam, ever."
-              buttonText="Follow Along"
+              buttonText="Get the Launch Email"
               successMessage="You're in. We'll write when there's something real to show."
             />
           </div>
-        </div>
+        </Container>
       </section>
 
-      {/* Made by a Human */}
+      {/* Made by People Who Care */}
       <section className="py-24 lg:py-32">
-        <div className="mx-auto max-w-3xl px-6 lg:px-8 text-center">
+        <Container size="sm" className="text-center">
           <h2 className="text-sm font-semibold text-sky tracking-wider uppercase mb-12">
-            Made by a human
+            Made by people who care
           </h2>
-          <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-sky via-teal to-mint p-1 mb-6">
-            <Image
-              src="/jared.jpg"
-              alt="Jared Klopstein"
-              width={192}
-              height={192}
-              className="w-full h-full rounded-full object-cover"
-            />
-          </div>
-          <h3 className="text-2xl font-bold text-foreground mb-2">
-            Jared Klopstein
+          <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
+            Real people, sweating real details.
           </h3>
-          <p className="text-foreground/50 text-sm mb-6">Founder, Ascella Studios</p>
-          <p className="text-foreground/70 text-lg leading-relaxed max-w-xl mx-auto mb-8">
-            Ascella is a one-person studio based in Watertown, Wisconsin. I
-            started it because too much software is built to check boxes and
-            chase trends&mdash;and I&apos;d rather spend my time making a few things
-            genuinely well. The name comes from a star in Sagittarius; the goal
-            is the same as the tagline: build things that lift people up.
+          <p className="text-foreground/70 text-lg leading-relaxed max-w-xl mx-auto mb-6">
+            Ascella is the consumer apps arm of Frontier Forge
+            Technologies&mdash;the part of the company that builds software for
+            everyday life. We&apos;d rather ship one app people love than ten
+            they tolerate, so there&apos;s no growth-hacking, no dark patterns,
+            no engagement tricks. Just software we&apos;d want on our own
+            phones.
           </p>
-          <div className="flex justify-center gap-4">
-            <a
-              href="https://x.com/ascellastudios"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-foreground/50 hover:text-sky transition-colors"
-              aria-label="X (Twitter)"
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
-            </a>
-            <a
-              href="https://github.com/Ascella-Studios"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-foreground/50 hover:text-sky transition-colors"
-              aria-label="GitHub"
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-              </svg>
-            </a>
-          </div>
-        </div>
+          <p className="text-foreground/70 text-lg leading-relaxed max-w-xl mx-auto">
+            The name comes from a star in Sagittarius. The goal is the same as
+            the tagline: build things that lift people up.
+          </p>
+        </Container>
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-card">
-        <div className="mx-auto max-w-3xl px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">Got an Idea?</h2>
+      <section className="py-24 border-t border-border bg-card/50">
+        <Container size="sm" className="text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
+            Be there when it ships.
+          </h2>
           <p className="text-foreground/70 mb-8 max-w-xl mx-auto text-lg">
-            We&apos;re always interested in real problems worth solving. Tell us
-            what&apos;s bugging you&mdash;maybe it becomes the next app.
+            One email at launch. A few honest updates before it. That&apos;s the
+            whole ask.
           </p>
-          <Link
-            href="/contact"
-            className="inline-block px-8 py-3 bg-gradient-to-r from-sky via-teal to-mint text-white font-medium rounded-lg hover:opacity-90 transition-opacity"
-          >
-            Start a Conversation
-          </Link>
-        </div>
+          <Button variant="gradient" href="#follow" className="px-8">
+            Leave Your Email
+          </Button>
+          <p className="text-foreground/50 text-sm mt-6">
+            Got an idea worth building?{' '}
+            <Link href="/contact" className="text-sky hover:underline">
+              Tell us about it
+            </Link>
+            .
+          </p>
+        </Container>
       </section>
     </div>
   );
