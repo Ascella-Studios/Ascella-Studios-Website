@@ -77,7 +77,7 @@ export default function TermsPage() {
               <section>
                 <h2 className="text-2xl font-semibold text-foreground mb-4">Governing Law</h2>
                 <p className="text-foreground/70">
-                  These Terms shall be governed by and construed in accordance with the laws of the State of California, without regard to its conflict of law provisions.
+                  These Terms shall be governed by and construed in accordance with the laws of the State of Wisconsin, without regard to its conflict of law provisions.
                 </p>
               </section>
 
