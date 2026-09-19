@@ -38,6 +38,11 @@ Production write: no
 Database read: TODO (cc onboard): fill this in.
 Database write: no
 
+## Command Center
+This repository is worked through the AI Command Center loop. Issues labelled `ai-ready` are picked
+up by an agent, which clones the repository, makes the change on a branch, and opens a pull request.
+Every pull request is reviewed by a human before it is merged; no agent merges or deploys on its own.
+
 ## Approval Policy
 Production deployment: owner approval required
 Destructive actions: owner approval required
