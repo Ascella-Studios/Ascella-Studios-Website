@@ -36,7 +36,7 @@ export default function Footer() {
         <div className="grid gap-10 md:grid-cols-[1.4fr_repeat(3,1fr)]">
           <div>
             <Logo size={24} />
-            <p className="text-foreground/60 mt-3 text-sm">Apps that elevate.</p>
+            <p className="text-foreground/60 mt-3 text-sm">Small software, built carefully.</p>
             <p className="text-foreground/60 mt-4 text-sm">
               A{' '}
               <a
