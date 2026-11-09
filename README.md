@@ -37,7 +37,7 @@ Node 22.18+ or 23.6+.
 - `src/app/`: pages (home, apps, apps/[id], solutions, about, contact, privacy, terms, 404)
 - `src/data/apps.ts`: the app catalog. It drives the home page, `/apps`, the case studies, the footer,
   and the sitemap. Images live in `public/apps/{id}/`.
-- `src/data/solutions.ts`: Ascella Solutions services, process, and FAQ
+- `src/data/solutions.ts`: Ascella Solutions offers and starting prices, process, FAQ, phone and email
 - `src/lib/waitlist.ts`: HubSpot lists that `/api/waitlist` accepts
 - `src/lib/contact.ts`: contact form topics (`/contact?topic=solutions` preselects one)
 - `src/app/[appname]/privacy|terms`: dynamic per-app legal pages, served from `legal/{appname}/*.html`

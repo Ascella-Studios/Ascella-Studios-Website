@@ -57,25 +57,21 @@ export default function AppShowcase({ app, flip = false, priority = false }: { a
       <div className={`lg:col-span-5 ${flip ? 'lg:order-1' : ''}`}>
         <div className="flex items-center gap-3 mb-5">
           <AppIcon app={app} />
-          <div className="flex flex-wrap items-center gap-2">
-            <StatusBadge status={app.status} />
-            <span className="text-xs font-mono uppercase tracking-wider text-foreground/50">{app.category}</span>
-          </div>
+          <h3 className="text-3xl font-bold text-foreground tracking-tight">{app.name}</h3>
         </div>
-        <h3 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">{app.name}</h3>
         <p className="mt-2 text-lg font-medium text-foreground/80">{app.tagline}</p>
         <p className="mt-4 text-foreground/70 leading-relaxed">{app.summary}</p>
-        <ul className="mt-6 space-y-2.5">
-          {app.highlights.slice(0, 3).map((h) => (
-            <li key={h.title} className="flex items-start gap-3 text-foreground/80">
-              <Icon name="check" className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-              <span>{h.title}</span>
+        <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm text-foreground/60">
+          {app.facts.map((fact) => (
+            <li key={fact} className="flex items-center gap-2">
+              <span className="size-1 rounded-full bg-foreground/40" aria-hidden />
+              {fact}
             </li>
           ))}
         </ul>
         <div className="mt-8 flex flex-col sm:flex-row gap-3">
           <Button variant="primary" href={`/apps/${app.id}`}>
-            Read the case study
+            How we built it
           </Button>
           <Button variant="outline" href={app.url} target="_blank" rel="noopener noreferrer">
             Visit {app.displayUrl}

@@ -2,14 +2,11 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import AuroraBackground from '@/components/AuroraBackground';
 import Container from '@/components/Container';
 import Button from '@/components/Button';
-import CtaBand from '@/components/CtaBand';
 import { AppIcon, StatusBadge } from '@/components/AppShowcase';
 import { Icon } from '@/components/icons';
 import { apps, getApp } from '@/data/apps';
-import { CONSULT_HREF } from '@/data/solutions';
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -40,6 +37,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+function Label({ children }: { children: React.ReactNode }) {
+  return <p className="text-sm font-medium text-accent mb-4">{children}</p>;
+}
+
 export default async function AppCaseStudyPage({ params }: Props) {
   const { id } = await params;
   const app = getApp(id);
@@ -57,9 +58,8 @@ export default async function AppCaseStudyPage({ params }: Props) {
   return (
     <div className="bg-background">
       {/* Header */}
-      <section className="relative overflow-hidden pt-16 sm:pt-20 pb-12">
-        <AuroraBackground variant="subtle" />
-        <Container className="relative z-10">
+      <section className="pt-12 sm:pt-16 pb-12">
+        <Container>
           <Link
             href="/apps"
             className="inline-flex items-center gap-2 text-sm text-foreground/60 hover:text-foreground transition-colors mb-10"
@@ -67,14 +67,13 @@ export default async function AppCaseStudyPage({ params }: Props) {
             <Icon name="arrowRight" className="w-4 h-4 rotate-180" />
             All apps
           </Link>
-          <div className="flex items-center gap-4 mb-6">
-            <AppIcon app={app} size={56} />
-            <p className="eyebrow">Case study</p>
+          <div className="flex items-center gap-4">
+            <AppIcon app={app} size={52} />
+            <h1 className="text-4xl md:text-6xl font-bold text-foreground tracking-tight">{app.name}</h1>
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold text-foreground tracking-tight">{app.name}</h1>
-          <p className="mt-4 text-xl md:text-2xl text-foreground/80 max-w-3xl">{app.tagline}</p>
-          <p className="mt-5 text-lg text-foreground/70 max-w-3xl leading-relaxed">{app.summary}</p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-3">
+          <p className="mt-5 text-xl md:text-2xl text-foreground/80 max-w-3xl">{app.tagline}</p>
+          <p className="mt-4 text-lg text-foreground/70 max-w-3xl leading-relaxed">{app.summary}</p>
+          <div className="mt-8">
             <Button variant="primary" href={app.url} target="_blank" rel="noopener noreferrer">
               Visit {app.displayUrl}
               <Icon name="arrowUpRight" className="w-4 h-4" />
@@ -100,7 +99,7 @@ export default async function AppCaseStudyPage({ params }: Props) {
           <dl className="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-px overflow-hidden rounded-2xl border border-border bg-border">
             {facts.map((fact) => (
               <div key={fact.label} className="bg-background p-5">
-                <dt className="text-xs font-mono uppercase tracking-wider text-foreground/50">{fact.label}</dt>
+                <dt className="text-sm text-foreground/50">{fact.label}</dt>
                 <dd className="mt-2 text-foreground font-medium">{fact.value}</dd>
               </div>
             ))}
@@ -113,7 +112,7 @@ export default async function AppCaseStudyPage({ params }: Props) {
         <Container size="md">
           <div className="grid md:grid-cols-2 gap-12 md:gap-16">
             <div>
-              <p className="eyebrow mb-4">The problem</p>
+              <Label>The problem</Label>
               <div className="space-y-4 text-foreground/70 text-lg leading-relaxed">
                 {app.problem.map((p) => (
                   <p key={p}>{p}</p>
@@ -121,7 +120,7 @@ export default async function AppCaseStudyPage({ params }: Props) {
               </div>
             </div>
             <div>
-              <p className="eyebrow mb-4">What we built</p>
+              <Label>What we built</Label>
               <div className="space-y-4 text-foreground/70 text-lg leading-relaxed">
                 {app.approach.map((p) => (
                   <p key={p}>{p}</p>
@@ -132,19 +131,34 @@ export default async function AppCaseStudyPage({ params }: Props) {
         </Container>
       </section>
 
-      {/* Highlights */}
+      {/* Decisions */}
       <section className="py-20 border-t border-border bg-card/50">
-        <Container>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight mb-12">What makes it work</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {app.highlights.map((h) => (
-              <div key={h.title} className="rounded-2xl border border-border bg-background p-6">
-                <Icon name="check" className="w-5 h-5 text-accent mb-4" />
-                <h3 className="font-semibold text-foreground">{h.title}</h3>
-                <p className="mt-2 text-sm text-foreground/70 leading-relaxed">{h.description}</p>
+        <Container size="md">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">Decisions we made</h2>
+          <p className="mt-3 text-lg text-foreground/70">The calls that shaped it, and why.</p>
+          <div className="mt-10 divide-y divide-border border-y border-border">
+            {app.decisions.map((d) => (
+              <div key={d.title} className="grid md:grid-cols-[16rem_1fr] gap-3 md:gap-10 py-7">
+                <h3 className="font-semibold text-foreground text-lg">{d.title}</h3>
+                <p className="text-foreground/70 leading-relaxed">{d.body}</p>
               </div>
             ))}
           </div>
+        </Container>
+      </section>
+
+      {/* Highlights */}
+      <section className="py-20 border-t border-border">
+        <Container>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight mb-10">What it does</h2>
+          <dl className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-8">
+            {app.highlights.map((h) => (
+              <div key={h.title} className="border-t border-foreground/20 pt-5">
+                <dt className="font-semibold text-foreground">{h.title}</dt>
+                <dd className="mt-2 text-sm text-foreground/70 leading-relaxed">{h.description}</dd>
+              </div>
+            ))}
+          </dl>
         </Container>
       </section>
 
@@ -152,7 +166,7 @@ export default async function AppCaseStudyPage({ params }: Props) {
       {app.gallery && app.gallery.length > 1 && (
         <section className="py-20 border-t border-border">
           <Container>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight mb-12">A closer look</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight mb-10">A closer look</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {app.gallery.map((img) => (
                 <figure key={img.src} className="overflow-hidden rounded-2xl border border-border bg-card">
@@ -177,17 +191,14 @@ export default async function AppCaseStudyPage({ params }: Props) {
         <Container size="md">
           <div className="grid md:grid-cols-2 gap-12 md:gap-16">
             <div>
-              <p className="eyebrow mb-4">Business model</p>
+              <Label>How it makes money</Label>
               <p className="text-foreground/80 text-lg leading-relaxed">{app.model}</p>
             </div>
             <div>
-              <p className="eyebrow mb-4">Built with</p>
+              <Label>Built with</Label>
               <ul className="flex flex-wrap gap-2">
                 {app.stack.map((tech) => (
-                  <li
-                    key={tech}
-                    className="rounded-lg border border-border bg-card px-3 py-1.5 text-sm font-mono text-foreground/80"
-                  >
+                  <li key={tech} className="rounded-lg border border-border bg-card px-3 py-1.5 text-sm text-foreground/80">
                     {tech}
                   </li>
                 ))}
@@ -198,45 +209,37 @@ export default async function AppCaseStudyPage({ params }: Props) {
         </Container>
       </section>
 
-      {/* More apps */}
-      {others.length > 0 && (
-        <section className="py-16 border-t border-border bg-card/50">
-          <Container>
-            <p className="eyebrow mb-6">More from Ascella</p>
-            <div className="grid sm:grid-cols-2 gap-4">
-              {others.map((other) => (
-                <Link
-                  key={other.id}
-                  href={`/apps/${other.id}`}
-                  className="group flex items-center gap-4 rounded-2xl border border-border bg-background p-5 hover:border-sky/50 transition-colors"
-                >
-                  <AppIcon app={other} size={44} />
-                  <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-foreground">{other.name}</p>
-                    <p className="text-sm text-foreground/60 truncate">{other.tagline}</p>
-                  </div>
-                  <Icon
-                    name="arrowRight"
-                    className="w-5 h-5 text-foreground/40 group-hover:text-accent group-hover:translate-x-0.5 transition-all"
-                  />
-                </Link>
-              ))}
-            </div>
-          </Container>
-        </section>
-      )}
-
-      <CtaBand
-        title="Have something you want built?"
-        description="Ascella Solutions brings the same approach to websites, landing pages, and software advice for small businesses."
-      >
-        <Button variant="gradient" href={CONSULT_HREF}>
-          Book a free consult
-        </Button>
-        <Button variant="outline" href="/solutions">
-          About Ascella Solutions
-        </Button>
-      </CtaBand>
+      {/* Next */}
+      <section className="py-14 border-t border-border bg-card/50">
+        <Container>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {others.map((other) => (
+              <Link
+                key={other.id}
+                href={`/apps/${other.id}`}
+                className="group flex items-center gap-4 rounded-2xl border border-border bg-background p-5 hover:border-sky/50 transition-colors"
+              >
+                <AppIcon app={other} size={44} />
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm text-foreground/50">Next</p>
+                  <p className="font-semibold text-foreground">{other.name}</p>
+                </div>
+                <Icon name="arrowRight" className="w-5 h-5 text-foreground/40 group-hover:text-accent group-hover:translate-x-0.5 transition-all" />
+              </Link>
+            ))}
+            <Link
+              href="/solutions"
+              className="group flex items-center gap-4 rounded-2xl border border-border bg-background p-5 hover:border-sky/50 transition-colors"
+            >
+              <div className="flex-1 min-w-0">
+                <p className="text-sm text-foreground/50">Need a website?</p>
+                <p className="font-semibold text-foreground">Ascella Solutions</p>
+              </div>
+              <Icon name="arrowRight" className="w-5 h-5 text-foreground/40 group-hover:text-accent group-hover:translate-x-0.5 transition-all" />
+            </Link>
+          </div>
+        </Container>
+      </section>
     </div>
   );
 }

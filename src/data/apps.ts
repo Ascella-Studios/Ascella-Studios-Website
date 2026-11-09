@@ -23,6 +23,11 @@ export interface AppGalleryItem extends AppImage {
   caption: string;
 }
 
+export interface AppDecision {
+  title: string;
+  body: string;
+}
+
 export interface App {
   id: string;
   name: string;
@@ -46,6 +51,10 @@ export interface App {
   /** Case study: what we built and how it works. */
   approach: string[];
   highlights: AppHighlight[];
+  /** Short factual lines shown on the home page instead of feature bullets. */
+  facts: string[];
+  /** Case study: real product decisions and why we made them. */
+  decisions: AppDecision[];
   /** How the product makes money, stated plainly. */
   model: string;
   stack: string[];
@@ -69,14 +78,14 @@ export const apps: App[] = [
     icon: '/apps/streamergames/icon.svg',
     tagline: 'The chat-game arcade for Twitch streams.',
     summary:
-      'Six chat games that run as a single OBS Browser Source. Viewers play by typing in Twitch chat—no accounts, nothing to install.',
+      'Six chat games a streamer adds to OBS once. Viewers play by typing in Twitch chat, without signing up for anything.',
     problem: [
       'Chat is the best part of a stream, but most of the time it has nothing to do. Streamers who want to give it something usually end up juggling a separate overlay for every game.',
-      'Chat-game tools also tend to add friction where it hurts most: viewers asked to sign up before they can play, free plans capped by the minute, AI features metered by the credit.',
+      'The tools that exist tend to add friction in the wrong places. Some ask viewers to sign up before they can play. Some cap free play by the minute. Some meter AI features by the credit.',
     ],
     approach: [
       'StreamerGames is one Browser Source URL that holds every game. The streamer adds it to OBS once, then switches games from a dashboard mid-stream without touching their scene.',
-      'Viewers join by typing in chat, with commands like !join or a letter answer, so there is nothing for them to install or sign up for. Every game is free to run with no daily time limit. Pro adds live AI: race commentary that reacts to what just happened, quiz questions written on the streamer’s theme, and boss lines that answer chat.',
+      'Viewers join by typing in chat, with commands like !join or a letter answer. Every game is free to run for as long as the stream lasts. Pro adds live AI on top: race commentary that reacts to what just happened, quiz questions written on the streamer’s theme, and a boss that talks back to chat.',
     ],
     highlights: [
       {
@@ -85,7 +94,7 @@ export const apps: App[] = [
       },
       {
         title: 'Viewers never sign up',
-        description: 'Chat plays by typing commands. No accounts, no extensions, nothing to install.',
+        description: 'Chat plays by typing commands. Nothing to install or sign up for.',
       },
       {
         title: 'Free, no time limit',
@@ -93,11 +102,30 @@ export const apps: App[] = [
       },
       {
         title: 'Live AI on Pro',
-        description: 'Commentary, themed trivia, and boss dialogue generated live from what chat does.',
+        description: 'Commentary, themed trivia and boss dialogue, written live from what chat does.',
       },
     ],
     model:
       'Every game is free to run. Pro is $9/month or $79/year, with AI included and no credit meter. StreamerGames takes no cut of a streamer’s revenue.',
+    facts: ['Live since September 2026', 'Free to run · Pro $9/month', 'Six games, one OBS source'],
+    decisions: [
+      {
+        title: 'Free means the whole stream',
+        body: 'At least one popular rival caps free play at 60 minutes a day. We don’t put a clock on the free plan. Pro pays for the things that cost us money to run, like live AI and saved leaderboards.',
+      },
+      {
+        title: 'One URL instead of one per game',
+        body: 'Streamers already juggle scenes. Every game lives behind the same Browser Source, so setup happens once and switching games mid-stream never means touching OBS.',
+      },
+      {
+        title: 'A watermark you can type',
+        body: 'An overlay can’t be clicked, so the free plan’s small mark shows streamergames.io/try, an address a viewer can read straight off a clip.',
+      },
+      {
+        title: 'No credit meter on AI',
+        body: 'Pro includes the AI features outright. Streamers shouldn’t have to watch a balance tick down in the middle of a stream.',
+      },
+    ],
     stack: ['Next.js', 'TypeScript', 'Supabase', 'Stripe', 'Claude API', 'Twitch chat', 'Vercel'],
     hero: {
       src: '/apps/streamergames/duck-derby.jpg',
@@ -164,18 +192,18 @@ export const apps: App[] = [
     icon: '/apps/homehelpersco/icon.svg',
     tagline: 'Tell us the job. We’ll send it to local pros.',
     summary:
-      'A free request board for homeowners around Watertown and Jefferson County, Wisconsin. Describe the job once and it goes to local contractors, who each set their own pricing.',
+      'A free request board for homeowners around Watertown and Jefferson County, Wisconsin. You describe the job once, it goes to local contractors, and each of them quotes their own price.',
     problem: [
       'When a homeowner needs a plumber or a roofer, they usually fall back on a Google search or a neighbour’s guess, then spend an afternoon calling around.',
       'Small contractors have the opposite problem. They want steady local work but can’t afford to keep paying for advertising to find it.',
     ],
     approach: [
-      'HomeHelpersCo turns ten phone calls into one request. A homeowner picks a trade, describes the job and their town, and the request goes to matching local pros by email. Pros reply with their own pricing.',
-      'It’s built for the way people actually search: a page for every trade and every town it serves, so “plumber in Watertown” leads somewhere useful. Contractors join free.',
+      'A homeowner picks a trade, describes the job and their town, and the request goes to matching local pros by email. The pros reply with their own pricing. One request replaces an afternoon of phone calls.',
+      'It’s built around how people search. Each trade and each town it serves has its own page, so a search for “plumber in Watertown” lands somewhere useful. Contractors join free.',
     ],
     highlights: [
       {
-        title: 'One request, not ten calls',
+        title: 'One request instead of ten calls',
         description: 'Describe the job once. Matching local pros get it by email.',
       },
       {
@@ -183,7 +211,7 @@ export const apps: App[] = [
         description: 'No fees, no subscription, no cut of the job.',
       },
       {
-        title: 'Local, not national',
+        title: 'Local to Jefferson County',
         description: 'Watertown, Jefferson, Fort Atkinson, Lake Mills, Oconomowoc and nearby towns.',
       },
       {
@@ -192,6 +220,21 @@ export const apps: App[] = [
       },
     ],
     model: 'Always free for homeowners. Contractors join free.',
+    facts: ['Live in Jefferson County, WI', 'Free for homeowners', 'Eight trades covered'],
+    decisions: [
+      {
+        title: 'We don’t promise what we can’t check',
+        body: 'You won’t find “vetted pros” or “free quotes” on HomeHelpersCo. We can’t guarantee either, so the site doesn’t claim them. Each pro sets their own price.',
+      },
+      {
+        title: 'A page for every trade and town',
+        body: 'Most homeowners start with a Google search. Separate pages for each trade and town mean “roofer in Lake Mills” finds a page that is actually about roofing in Lake Mills.',
+      },
+      {
+        title: 'Start in one county',
+        body: 'A request board only works when there are pros on the other end. So it covers Jefferson County, where we’re based, and grows town by town instead of spreading thin across the state.',
+      },
+    ],
     stack: ['Next.js', 'TypeScript', 'Supabase', 'Resend', 'Tailwind CSS', 'Vercel'],
     hero: {
       src: '/apps/homehelpersco/screen-desktop.png',

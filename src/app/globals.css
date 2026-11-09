@@ -53,17 +53,6 @@ html.dark {
   color: transparent;
 }
 
-/* Small mono label above headings */
-@utility eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  line-height: 1rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--accent);
-}
-
 body {
   background-color: var(--background);
   color: var(--foreground);

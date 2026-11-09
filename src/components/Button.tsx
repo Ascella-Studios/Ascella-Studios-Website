@@ -6,8 +6,7 @@ const base =
 
 const variants = {
   primary: 'bg-foreground text-background hover:bg-foreground/90',
-  gradient:
-    'bg-gradient-to-r from-sky via-teal to-mint text-slate-950 hover:opacity-90 transition-opacity',
+  accent: 'bg-sky text-slate-950 hover:bg-sky/85',
   outline: 'border border-border text-foreground hover:bg-card',
 } as const;
 

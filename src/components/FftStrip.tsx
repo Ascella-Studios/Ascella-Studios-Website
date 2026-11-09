@@ -17,21 +17,20 @@ export default function FftStrip() {
             className="w-40 md:w-48 h-auto shrink-0 invert dark:invert-0 opacity-90"
           />
           <div className="flex-1">
-            <p className="eyebrow mb-3">A Frontier Forge company</p>
             <h2 id="fft-title" className="text-2xl md:text-3xl font-bold text-foreground tracking-tight">
               Part of Frontier Forge Technologies
             </h2>
             <p className="mt-3 text-foreground/70 leading-relaxed max-w-xl">
-              Frontier Forge builds AI agents, automation, and software for businesses. Ascella
-              Studios is its consumer apps studio: we build and run our own products, and help
-              small businesses get online through Ascella Solutions.
+              Ascella is the consumer side of Frontier Forge. The rest of Frontier Forge builds AI
+              agents, automation and custom software for businesses. If that&rsquo;s what you need,
+              they&rsquo;re the people to talk to.
             </p>
           </div>
           <a
             href={FFT_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-medium text-sky hover:underline shrink-0"
+            className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:underline shrink-0"
           >
             frontierforge.tech
             <Icon name="arrowUpRight" className="w-4 h-4" />

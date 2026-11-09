@@ -1,6 +1,7 @@
 import type { IconName } from '@/components/icons';
 
 // Ascella Solutions: websites and consulting, mostly for small businesses.
+// Written in Jared's voice: the person a small business actually deals with.
 // Agent and automation work belongs to Frontier Forge Technologies. Send
 // those enquiries to frontierforge.tech rather than listing them here.
 
@@ -9,98 +10,107 @@ export const FFT_URL = 'https://frontierforge.tech';
 /** Contact form link with the Solutions topic preselected. */
 export const CONSULT_HREF = '/contact?topic=solutions';
 
-export interface Service {
+export const PHONE_DISPLAY = '(920) 941-4455';
+export const PHONE_HREF = 'tel:+19209414455';
+export const EMAIL = 'hello@ascellastudios.com';
+
+export interface Offer {
   id: string;
   icon: IconName;
   title: string;
+  /** e.g. "From $2,500". Must be a real, current price. Set Nov 2026 from
+   *  research into Wisconsin small-business web pricing (Madison, Milwaukee,
+   *  Green Bay studios start at roughly $1,000 to $2,400 for a small site). */
+  price: string;
+  priceNote: string;
   summary: string;
   includes: string[];
 }
 
-export const services: Service[] = [
+export const offers: Offer[] = [
   {
     id: 'websites',
     icon: 'globe',
-    title: 'Website builds',
+    title: 'Website',
+    price: 'From $1,500',
+    priceNote: 'Most small-business sites land between $1,500 and $3,500.',
     summary:
-      'New sites and redesigns for businesses that have outgrown a template, or never had a site at all. Fast, mobile-first, and built to turn visitors into calls and enquiries.',
+      'A new site, or a rebuild of one that’s gotten embarrassing. Designed and built from scratch for your business.',
     includes: [
-      'Mobile-first design that loads fast',
-      'Local search basics: page titles, structured data, Google Business Profile',
-      'Contact forms that land in your inbox',
-      'Domain, hosting, and launch handled for you',
+      'Looks right and loads fast on phones',
+      'Set up so Google can find it, including your Business Profile',
+      'A contact form that emails you',
+      'I register the domain, set up hosting, and launch it',
     ],
   },
   {
     id: 'landing-pages',
     icon: 'layout',
-    title: 'Landing pages',
+    title: 'Landing page',
+    price: 'From $600',
+    priceNote: 'Most land between $600 and $1,200.',
     summary:
-      'One focused page for a launch, an offer, an event, or an ad campaign, with one clear thing for the visitor to do.',
+      'One page for one purpose: a grand opening, a seasonal offer, an event, or an ad you’re paying for. Everything on it points at one next step.',
     includes: [
-      'A single, clear call to action',
-      'Copy written with you, not lorem ipsum',
-      'Sign-up or enquiry form connected to your tools',
-      'Built to be updated as the campaign changes',
+      'Written with you, in your words',
+      'A sign-up or enquiry form that goes where you need it',
+      'Easy to change when the offer changes',
     ],
   },
   {
     id: 'consulting',
     icon: 'chat',
     title: 'Consulting',
+    price: '$100/hour',
+    priceNote: 'Billed by the hour. The first call is free.',
     summary:
-      'Plain-spoken advice from people who build and run their own software. Bring a website that isn’t working, an app idea, or a pile of tools that don’t talk to each other.',
+      'For when you need a second opinion more than a new website. Bring a site that isn’t bringing in work, a software bill that keeps growing, or an app idea you want to pressure-test.',
     includes: [
-      'Website and online-presence reviews',
-      'Choosing tools and platforms that fit your budget',
-      'Planning an app or software idea before you spend on it',
-      'A written summary you can act on, with or without us',
+      'A review of your website or online presence',
+      'Help choosing tools that fit your budget',
+      'A reality check on an app idea before you pay anyone to build it',
+      'Notes you can act on, whether or not you hire me',
     ],
   },
 ];
 
 export const process = [
   {
-    title: 'Free consult',
+    title: 'We talk',
     description:
-      'A short call about your business, what’s working, and what isn’t. No pitch deck, no pressure.',
+      'A free call, about 30 minutes. You tell me about the business and what you want the website to do. I’ll tell you honestly if you need me.',
   },
   {
-    title: 'Plan & quote',
+    title: 'You get a quote',
     description:
-      'You get a written plan and a quote before any work starts, so you know exactly what you’re paying for.',
+      'A written plan and a fixed price before anything starts. If it doesn’t work for you, that’s the end of it.',
   },
   {
-    title: 'Build & launch',
+    title: 'I build it, you sign off',
     description:
-      'We build it, you review it along the way, and we launch it together. You own your domain, content, and accounts.',
+      'You see it as it comes together and nothing launches until you’re happy. The domain, the content and the accounts are in your name.',
   },
-];
-
-export const audiences = [
-  'Shops and restaurants',
-  'Trades and home services',
-  'Studios and salons',
-  'Clinics and practices',
-  'Nonprofits and clubs',
-  'Founders with an idea',
 ];
 
 export const faqs = [
   {
-    q: 'How much does a website cost?',
-    a: 'It depends on what you need. After the free consult you get a written quote before any work starts, and nothing is billed until you agree to it.',
+    q: 'What does a website cost?',
+    a: 'The prices above are where projects start. After our call you get a fixed quote in writing, and you don’t pay anything until you’ve agreed to it.',
   },
   {
-    q: 'Do I need to be local?',
-    a: 'No. We’re based in Watertown, Wisconsin, and work with businesses anywhere over video calls and email.',
+    q: 'Is hosting included?',
+    a: 'The build price covers setting it up. The domain and hosting are registered in your name and billed to you directly, so you’re never locked in to me.',
   },
   {
-    q: 'Can you help with automation or AI agents?',
-    a: 'That’s the speciality of our parent company, Frontier Forge Technologies. Tell us what you need and we’ll point you to the right people, or reach them directly at frontierforge.tech.',
+    q: 'Do I have to be in Watertown?',
+    a: 'No. Local businesses can meet in person if they like. Everyone else gets the same thing over video calls and email.',
   },
   {
-    q: 'I have an app idea. Is that a fit?',
-    a: 'Yes, for consulting. We build and run our own apps, so we can help you work out what to build first, what it might cost, and what to avoid.',
+    q: 'Can you set up automation or AI for my business?',
+    a: 'That’s what our parent company, Frontier Forge Technologies, does. I’ll introduce you, or you can reach them directly at frontierforge.tech.',
+  },
+  {
+    q: 'I have an idea for an app. Can you help?',
+    a: 'Yes, through consulting. I build and run apps myself, so I can help you work out what to build first, roughly what it would cost, and where people usually waste money.',
   },
 ];

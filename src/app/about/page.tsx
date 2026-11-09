@@ -1,15 +1,13 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import AuroraBackground from '@/components/AuroraBackground';
 import Container from '@/components/Container';
 import Button from '@/components/Button';
-import CtaBand from '@/components/CtaBand';
 import { Icon } from '@/components/icons';
-import { CONSULT_HREF, FFT_URL } from '@/data/solutions';
+import { FFT_URL } from '@/data/solutions';
 
 const description =
-  'Ascella Studios is the consumer apps studio of Frontier Forge Technologies. We build and run StreamerGames and HomeHelpersCo, and help small businesses through Ascella Solutions.';
+  'Ascella Studios is the consumer apps studio of Frontier Forge Technologies, founded by Jared Klopstein in Watertown, Wisconsin. It builds and runs StreamerGames and HomeHelpersCo.';
 
 export const metadata: Metadata = {
   title: 'About',
@@ -26,215 +24,189 @@ const family = [
   {
     name: 'Frontier Forge Technologies',
     role: 'Parent company',
-    description: 'AI agents, automation, and software for businesses.',
+    description: 'Builds AI agents, automation and custom software for businesses.',
     href: FFT_URL,
-    external: true,
   },
   {
     name: 'Ascella Studios',
     role: 'Consumer apps',
     description: 'Our own products, plus websites and consulting through Ascella Solutions.',
-    href: '/',
     current: true,
   },
   {
     name: 'GPM',
-    role: 'Media · In development',
+    role: 'Media, in development',
     description: 'Frontier Forge’s media arm, being set up to document the work.',
     href: `${FFT_URL}/gpm.html`,
-    external: true,
   },
 ];
 
-const steps = [
+const commitments = [
   {
-    title: 'Start with one real problem',
-    description:
-      'Before anything is designed, we find out what people actually struggle with, and whether software is even the answer.',
+    title: 'Free means free',
+    body: 'The StreamerGames free plan has no daily time limit. HomeHelpersCo costs homeowners nothing. If something is free, we don’t quietly cap it.',
   },
   {
-    title: 'Ship something small that works',
-    description:
-      'A focused first version in real hands beats a big plan on paper. Then we keep improving it based on how it’s used.',
+    title: 'Cancelling isn’t a maze',
+    body: 'A streamer cancels StreamerGames Pro from their own account page. Nobody has to email us and ask.',
   },
   {
-    title: 'Keep it running',
-    description:
-      'Launch is the beginning. We host, monitor, and maintain what we build, so it stays fast and keeps working.',
+    title: 'We only claim what we can back up',
+    body: 'That’s why HomeHelpersCo never calls contractors “vetted”. We can’t check that, so we don’t say it.',
   },
 ];
 
 export default function AboutPage() {
   return (
     <div className="bg-background">
-      {/* Hero */}
-      <section className="relative overflow-hidden py-20 sm:py-28 lg:py-32">
-        <AuroraBackground variant="subtle" />
-        <Container className="relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <p className="eyebrow mb-6">About Ascella</p>
-            <h1 className="text-4xl md:text-6xl font-bold text-foreground tracking-tight">
-              A small studio with <span className="text-gradient">big standards</span>
-            </h1>
-            <p className="mt-6 text-xl text-foreground/70 leading-relaxed">
-              Ascella Studios is the consumer apps studio of Frontier Forge Technologies. We build
-              and run our own software for everyday life, and help small businesses get online
-              through Ascella Solutions.
-            </p>
-          </div>
+      {/* Header */}
+      <section className="pt-16 sm:pt-24 pb-16 border-b border-border">
+        <Container>
+          <h1 className="text-4xl md:text-6xl font-bold text-foreground tracking-tight max-w-3xl leading-[1.05]">
+            A small studio in Watertown, Wisconsin
+          </h1>
+          <p className="mt-6 text-lg md:text-xl text-foreground/70 max-w-2xl leading-relaxed">
+            Ascella Studios builds consumer software and keeps it running. It&rsquo;s the consumer
+            apps side of Frontier Forge Technologies.
+          </p>
         </Container>
       </section>
 
-      {/* Story */}
-      <section className="py-16 lg:py-24">
-        <Container size="sm">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight mb-8">The story</h2>
-          <div className="space-y-6 text-foreground/70 text-lg leading-relaxed">
-            <p>
-              Ascella started in 2026 from a simple frustration: too much software is built to
-              check boxes or chase trends, and not enough is built because someone cared about the
-              problem. We wanted to build the second kind, and to build it properly.
-            </p>
-            <p>
-              Since then we’ve launched two products.{' '}
-              <Link href="/apps/streamergames" className="text-accent hover:underline">
-                StreamerGames
-              </Link>{' '}
-              gives Twitch chat something to do: a chat-game arcade that runs as a single OBS
-              source.{' '}
-              <Link href="/apps/homehelpersco" className="text-accent hover:underline">
-                HomeHelpersCo
-              </Link>{' '}
-              turns ten phone calls into one request, connecting Wisconsin homeowners with local
-              contractors. We build them, launch them, and run them ourselves.
-            </p>
-            <p>
-              Today Ascella is the consumer side of{' '}
-              <a href={FFT_URL} target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
-                Frontier Forge Technologies
-              </a>
-              . Frontier Forge builds AI agents and automation for businesses. Ascella builds our
-              own products and, through{' '}
-              <Link href="/solutions" className="text-accent hover:underline">
-                Ascella Solutions
-              </Link>
-              , brings the same care to websites and advice for small businesses.
-            </p>
-            <p>
-              The name comes from Ascella, a star in the constellation Sagittarius, and it echoes
-              <em> ascend</em>. The goal is the same as the tagline: build things that lift people
-              up.
-            </p>
-          </div>
-        </Container>
-      </section>
-
-      {/* Founder */}
-      <section className="py-16 lg:py-24 border-t border-border bg-card/50">
-        <Container size="md">
-          <div className="grid md:grid-cols-[auto_1fr] gap-10 md:gap-14 items-center">
-            <Image
-              src="/team/jared.jpg"
-              alt="Jared Klopstein"
-              width={383}
-              height={351}
-              className="size-40 md:size-52 rounded-2xl object-cover border border-border mx-auto md:mx-0"
-            />
-            <div className="text-center md:text-left">
-              <p className="eyebrow mb-3">Founder</p>
-              <h2 className="text-3xl font-bold text-foreground tracking-tight">Jared Klopstein</h2>
-              <p className="mt-1 text-foreground/60">
-                Founder, Ascella Studios · Founding member, Frontier Forge Technologies
+      {/* Story + founder */}
+      <section className="py-20 lg:py-24">
+        <Container>
+          <div className="grid lg:grid-cols-12 gap-14">
+            <div className="lg:col-span-7 space-y-6 text-foreground/75 text-lg leading-relaxed">
+              <p>
+                Jared Klopstein started Ascella in early 2026 to build apps. The first months were
+                mostly experiments, and most of those stayed experiments. Two turned into real
+                products.
               </p>
-              <p className="mt-5 text-foreground/70 text-lg leading-relaxed">
-                Jared started Ascella in Watertown, Wisconsin to make a few things genuinely well
-                instead of many things halfway. He leads product and engineering across the
-                studio&rsquo;s apps and works directly with Ascella Solutions clients.
+              <p>
+                <Link href="/apps/streamergames" className="text-foreground underline decoration-border underline-offset-4 hover:text-accent">
+                  StreamerGames
+                </Link>{' '}
+                went live in September 2026. It gives Twitch chat something to do: six games a
+                streamer adds to OBS once, which viewers play by typing in chat.{' '}
+                <Link href="/apps/homehelpersco" className="text-foreground underline decoration-border underline-offset-4 hover:text-accent">
+                  HomeHelpersCo
+                </Link>{' '}
+                is closer to home. Homeowners in Jefferson County describe a job once and it goes to
+                local contractors.
               </p>
-              <a
-                href={`${FFT_URL}/#company`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent hover:underline"
-              >
-                Meet the Frontier Forge founding team
-                <Icon name="arrowUpRight" className="w-4 h-4" />
-              </a>
+              <p>
+                Along the way Jared co-founded{' '}
+                <a href={FFT_URL} target="_blank" rel="noopener noreferrer" className="text-foreground underline decoration-border underline-offset-4 hover:text-accent">
+                  Frontier Forge Technologies
+                </a>{' '}
+                with Daniel Berry and Dylan Gaffney. Frontier Forge builds AI agents and automation
+                for businesses. Ascella became its consumer side: our own apps, plus{' '}
+                <Link href="/solutions" className="text-foreground underline decoration-border underline-offset-4 hover:text-accent">
+                  Ascella Solutions
+                </Link>
+                , which builds websites for small businesses.
+              </p>
+              <p>The name is a star in Sagittarius.</p>
             </div>
-          </div>
-        </Container>
-      </section>
 
-      {/* Family */}
-      <section className="py-16 lg:py-24 border-t border-border">
-        <Container>
-          <div className="text-center mb-12">
-            <p className="eyebrow mb-4">The family</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">Where Ascella fits</h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {family.map((member) => {
-              const card = (
-                <>
-                  <p className="text-xs font-mono uppercase tracking-wider text-foreground/50">{member.role}</p>
-                  <h3 className="mt-3 text-xl font-semibold text-foreground flex items-center gap-2">
-                    {member.name}
-                    {member.external && <Icon name="arrowUpRight" className="w-4 h-4 text-foreground/40" />}
-                  </h3>
-                  <p className="mt-2 text-foreground/70 leading-relaxed">{member.description}</p>
-                </>
-              );
-              const classes = `block h-full rounded-2xl border p-8 transition-colors ${
-                member.current
-                  ? 'border-sky/50 bg-sky/5'
-                  : 'border-border bg-card hover:border-sky/50'
-              }`;
-              return member.current ? (
-                <div key={member.name} className={classes} aria-current="page">
-                  {card}
-                </div>
-              ) : (
-                <a key={member.name} href={member.href} target="_blank" rel="noopener noreferrer" className={classes}>
-                  {card}
+            <aside className="lg:col-span-5">
+              <div className="rounded-2xl border border-border bg-card p-7 lg:sticky lg:top-24">
+                <Image
+                  src="/team/jared.jpg"
+                  alt="Jared Klopstein"
+                  width={383}
+                  height={351}
+                  className="size-24 rounded-xl object-cover"
+                />
+                <h2 className="mt-5 text-2xl font-bold text-foreground tracking-tight">Jared Klopstein</h2>
+                <p className="text-foreground/60">Founder, Ascella Studios</p>
+                <p className="text-foreground/60">Co-founder, Frontier Forge Technologies</p>
+                <p className="mt-5 text-foreground/75 leading-relaxed">
+                  Jared designs and builds Ascella&rsquo;s products. If you hire Ascella Solutions,
+                  he&rsquo;s the person you&rsquo;ll talk to.
+                </p>
+                <a
+                  href={`${FFT_URL}/#company`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-accent hover:underline"
+                >
+                  The Frontier Forge team
+                  <Icon name="arrowUpRight" className="w-4 h-4" />
                 </a>
-              );
-            })}
+              </div>
+            </aside>
           </div>
         </Container>
       </section>
 
-      {/* How we work */}
-      <section className="py-16 lg:py-24 border-t border-border bg-card/50">
+      {/* Commitments */}
+      <section className="py-20 lg:py-24 border-t border-border bg-card/50">
         <Container>
-          <div className="text-center mb-12">
-            <p className="eyebrow mb-4">How we work</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">
-              Same process, whoever it’s for
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {steps.map((step, i) => (
-              <div key={step.title} className="rounded-2xl border border-border bg-background p-8">
-                <span className="font-mono text-sm text-accent">0{i + 1}</span>
-                <h3 className="mt-3 text-xl font-semibold text-foreground">{step.title}</h3>
-                <p className="mt-3 text-foreground/70 leading-relaxed">{step.description}</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">What we hold ourselves to</h2>
+          <p className="mt-3 text-lg text-foreground/70 max-w-2xl">
+            Every studio has values on its About page. These are the ones you can check in our
+            products.
+          </p>
+          <div className="mt-12 grid md:grid-cols-3 gap-8">
+            {commitments.map((c) => (
+              <div key={c.title} className="border-t border-foreground/20 pt-6">
+                <h3 className="text-xl font-semibold text-foreground">{c.title}</h3>
+                <p className="mt-3 text-foreground/70 leading-relaxed">{c.body}</p>
               </div>
             ))}
           </div>
         </Container>
       </section>
 
-      <CtaBand
-        title="See what we’ve built, or start something new."
-        description="Take a look at our apps, or book a free consult about your own project."
-      >
-        <Button variant="primary" href="/apps">
-          See our apps
-        </Button>
-        <Button variant="outline" href={CONSULT_HREF}>
-          Book a free consult
-        </Button>
-      </CtaBand>
+      {/* Family */}
+      <section className="py-20 lg:py-24 border-t border-border">
+        <Container>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight mb-10">Where Ascella fits</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {family.map((member) => {
+              const inner = (
+                <>
+                  <p className="text-sm text-foreground/50">{member.role}</p>
+                  <h3 className="mt-2 text-xl font-semibold text-foreground flex items-center gap-2">
+                    {member.name}
+                    {member.href && <Icon name="arrowUpRight" className="w-4 h-4 text-foreground/40" />}
+                  </h3>
+                  <p className="mt-2 text-foreground/70 leading-relaxed">{member.description}</p>
+                </>
+              );
+              return member.href ? (
+                <a
+                  key={member.name}
+                  href={member.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block h-full rounded-2xl border border-border bg-card p-7 hover:border-sky/50 transition-colors"
+                >
+                  {inner}
+                </a>
+              ) : (
+                <div key={member.name} className="h-full rounded-2xl border border-sky/50 bg-sky/5 p-7">
+                  {inner}
+                </div>
+              );
+            })}
+          </div>
+        </Container>
+      </section>
+
+      <section className="py-14 border-t border-border bg-card/50">
+        <Container>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Button variant="primary" href="/apps">
+              See the apps
+            </Button>
+            <Button variant="outline" href="/solutions">
+              Need a website?
+            </Button>
+          </div>
+        </Container>
+      </section>
     </div>
   );
 }

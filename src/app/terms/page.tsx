@@ -18,7 +18,7 @@ export default function TermsPage() {
       <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Terms of <span className="text-gradient">Service</span>
+            Terms of Service
           </h1>
           <p className="text-foreground/70 mb-12">
             Last updated: January 2026

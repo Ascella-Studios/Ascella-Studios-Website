@@ -22,11 +22,14 @@ const organizationJsonLd = {
     name: 'Frontier Forge Technologies',
     url: 'https://frontierforge.tech',
   },
-  sameAs: [
-    'https://x.com/ascellastudios',
-    'https://github.com/Ascella-Studios',
-    'https://linkedin.com/company/ascellastudios',
-  ],
+  telephone: '+1-920-941-4455',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Watertown',
+    addressRegion: 'WI',
+    addressCountry: 'US',
+  },
+  sameAs: ['https://github.com/Ascella-Studios'],
 };
 
 export const metadata: Metadata = {

@@ -1,24 +1,30 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import AuroraBackground from '@/components/AuroraBackground';
 import Container from '@/components/Container';
 import Button from '@/components/Button';
-import SectionHeading from '@/components/SectionHeading';
-import CtaBand from '@/components/CtaBand';
 import { AppIcon } from '@/components/AppShowcase';
 import { Icon } from '@/components/icons';
 import { apps } from '@/data/apps';
-import { audiences, CONSULT_HREF, faqs, FFT_URL, process, services } from '@/data/solutions';
+import {
+  CONSULT_HREF,
+  EMAIL,
+  faqs,
+  FFT_URL,
+  offers,
+  PHONE_DISPLAY,
+  PHONE_HREF,
+  process,
+} from '@/data/solutions';
 
 const description =
-  'Ascella Solutions builds websites and landing pages and gives practical tech advice to small businesses. Book a free consult with the team behind StreamerGames and HomeHelpersCo.';
+  'Websites, landing pages and consulting for small businesses, from Jared Klopstein at Ascella Studios in Watertown, Wisconsin. Clear starting prices and a free first call.';
 
 export const metadata: Metadata = {
-  title: 'Ascella Solutions: websites and consulting for small businesses',
+  title: 'Ascella Solutions: websites for small businesses',
   description,
   openGraph: {
-    title: 'Ascella Solutions | Websites and consulting for small businesses',
+    title: 'Ascella Solutions | Websites for small businesses',
     description,
     url: 'https://ascellastudios.com/solutions',
   },
@@ -29,71 +35,100 @@ export default function SolutionsPage() {
   return (
     <div className="bg-background">
       {/* Hero */}
-      <section className="relative overflow-hidden py-20 sm:py-28 lg:py-32">
-        <AuroraBackground variant="subtle" />
-        <Container className="relative z-10">
-          <div className="max-w-3xl">
-            <p className="eyebrow mb-6">Ascella Solutions</p>
-            <h1 className="text-4xl md:text-6xl font-bold text-foreground tracking-tight">
-              Your business, <span className="text-gradient">properly online</span>
-            </h1>
-            <p className="mt-6 text-xl text-foreground/70 leading-relaxed">
-              Websites, landing pages, and plain-spoken tech advice for small businesses of every
-              kind, from the team that builds and runs its own software.
-            </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4">
-              <Button variant="gradient" href={CONSULT_HREF}>
-                Book a free consult
-              </Button>
-              <Button variant="outline" href="#services">
-                See what we do
-              </Button>
+      <section className="py-16 sm:py-24 border-b border-border">
+        <Container>
+          <div className="grid lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-7">
+              <p className="text-sm font-medium text-accent mb-5">Ascella Solutions</p>
+              <h1 className="text-4xl md:text-6xl font-bold text-foreground tracking-tight leading-[1.05]">
+                Websites for small businesses, built by someone you can call.
+              </h1>
+              <p className="mt-6 text-lg md:text-xl text-foreground/70 leading-relaxed max-w-2xl">
+                I&rsquo;m Jared Klopstein. I build and run two live web products from Watertown,
+                Wisconsin. Through Ascella Solutions I build websites for shops, trades, restaurants,
+                clinics and nonprofits, and you deal with me from the first call to launch day.
+              </p>
+              <div className="mt-9 flex flex-col sm:flex-row gap-3">
+                <Button variant="accent" href={CONSULT_HREF}>
+                  Book a free call
+                </Button>
+                <Button variant="outline" href={PHONE_HREF}>
+                  Call {PHONE_DISPLAY}
+                </Button>
+              </div>
             </div>
-          </div>
-        </Container>
-      </section>
 
-      {/* Who it's for */}
-      <section className="py-12 border-y border-border bg-card/50">
-        <Container>
-          <div className="flex flex-col lg:flex-row lg:items-center gap-6">
-            <p className="text-sm font-semibold text-foreground shrink-0">Built for small businesses:</p>
-            <ul className="flex flex-wrap gap-2">
-              {audiences.map((a) => (
-                <li key={a} className="rounded-full border border-border bg-background px-3.5 py-1.5 text-sm text-foreground/80">
-                  {a}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Container>
-      </section>
-
-      {/* Services */}
-      <section id="services" className="py-24 lg:py-32 scroll-mt-16">
-        <Container>
-          <SectionHeading
-            eyebrow="What we do"
-            title="Three ways we can help."
-            description="Start with whichever fits. Plenty of projects start as a consult and become a website, and plenty of consults end with “you don’t need us for this.”"
-            className="mb-14"
-          />
-          <div className="grid lg:grid-cols-3 gap-6">
-            {services.map((service) => (
-              <article
-                key={service.id}
-                id={service.id}
-                className="scroll-mt-24 flex flex-col rounded-2xl border border-border bg-card p-8"
-              >
-                <div className="size-12 rounded-xl border border-border bg-background text-accent flex items-center justify-center mb-6">
-                  <Icon name={service.icon} className="w-6 h-6" />
+            <aside className="lg:col-span-5 lg:justify-self-end w-full max-w-sm">
+              <div className="rounded-2xl border border-border bg-card p-6">
+                <div className="flex items-center gap-4">
+                  <Image
+                    src="/team/jared.jpg"
+                    alt="Jared Klopstein"
+                    width={383}
+                    height={351}
+                    priority
+                    className="size-20 rounded-xl object-cover"
+                  />
+                  <div>
+                    <p className="font-semibold text-foreground">Jared Klopstein</p>
+                    <p className="text-sm text-foreground/60">Founder, Ascella Studios</p>
+                    <p className="text-sm text-foreground/60">Watertown, WI</p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold text-foreground">{service.title}</h3>
-                <p className="mt-3 text-foreground/70 leading-relaxed">{service.summary}</p>
-                <ul className="mt-6 pt-6 border-t border-border space-y-3 text-sm">
-                  {service.includes.map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-foreground/80">
-                      <Icon name="check" className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                <dl className="mt-6 space-y-3 text-sm">
+                  <div className="flex justify-between gap-4">
+                    <dt className="text-foreground/60">Phone</dt>
+                    <dd>
+                      <a href={PHONE_HREF} className="text-foreground hover:text-accent">
+                        {PHONE_DISPLAY}
+                      </a>
+                    </dd>
+                  </div>
+                  <div className="flex justify-between gap-4">
+                    <dt className="text-foreground/60">Email</dt>
+                    <dd>
+                      <a href={`mailto:${EMAIL}`} className="text-foreground hover:text-accent">
+                        {EMAIL}
+                      </a>
+                    </dd>
+                  </div>
+                  <div className="flex justify-between gap-4">
+                    <dt className="text-foreground/60">First call</dt>
+                    <dd className="text-foreground">Free</dd>
+                  </div>
+                </dl>
+              </div>
+            </aside>
+          </div>
+        </Container>
+      </section>
+
+      {/* Pricing */}
+      <section id="pricing" className="py-20 lg:py-28 scroll-mt-16">
+        <Container>
+          <div className="max-w-2xl">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">What it costs</h2>
+            <p className="mt-4 text-lg text-foreground/70">
+              These are starting prices. After we talk, you get a fixed quote in writing, so the
+              number you agree to is the number you pay.
+            </p>
+          </div>
+          <div className="mt-12 grid lg:grid-cols-3 gap-px rounded-2xl overflow-hidden border border-border bg-border">
+            {offers.map((offer) => (
+              <article key={offer.id} id={offer.id} className="scroll-mt-24 bg-background p-8 flex flex-col">
+                <div className="flex items-center gap-3 text-foreground">
+                  <Icon name={offer.icon} className="w-5 h-5 text-accent" />
+                  <h3 className="text-lg font-semibold">{offer.title}</h3>
+                </div>
+                <p className="mt-6">
+                  <span className="text-4xl font-bold text-foreground tracking-tight">{offer.price}</span>
+                  <span className="block mt-1 text-sm text-foreground/60">{offer.priceNote}</span>
+                </p>
+                <p className="mt-5 text-foreground/70 leading-relaxed">{offer.summary}</p>
+                <ul className="mt-6 space-y-2.5 text-sm text-foreground/80">
+                  {offer.includes.map((item) => (
+                    <li key={item} className="flex gap-3">
+                      <span className="mt-2 size-1 rounded-full bg-foreground/40 shrink-0" aria-hidden />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -104,44 +139,32 @@ export default function SolutionsPage() {
         </Container>
       </section>
 
-      {/* Process */}
-      <section className="py-24 lg:py-32 border-t border-border bg-card/50">
+      {/* Honest proof */}
+      <section className="py-20 lg:py-28 border-t border-border bg-card/50">
         <Container>
-          <SectionHeading
-            eyebrow="How it works"
-            title="Simple, and in writing."
-            description="No retainers you didn’t ask for, no surprise invoices. You know the plan and the price before anything starts."
-            className="mb-14"
-          />
-          <ol className="grid md:grid-cols-3 gap-6">
-            {process.map((step, i) => (
-              <li key={step.title} className="relative rounded-2xl border border-border bg-background p-8">
-                <span className="font-mono text-sm text-accent">0{i + 1}</span>
-                <h3 className="mt-3 text-xl font-semibold text-foreground">{step.title}</h3>
-                <p className="mt-3 text-foreground/70 leading-relaxed">{step.description}</p>
-              </li>
-            ))}
-          </ol>
-        </Container>
-      </section>
-
-      {/* Proof */}
-      <section className="py-24 lg:py-32 border-t border-border">
-        <Container>
-          <div className="grid lg:grid-cols-12 gap-12 items-center">
+          <div className="grid lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-5">
-              <SectionHeading
-                eyebrow="Why us"
-                title="We run our own software, so we build like owners."
-                description="We launch, host, and maintain our own products, so we know what keeps a site fast, findable, and working after launch day. HomeHelpersCo was built to bring local contractors work, which is the same kind of small business Ascella Solutions serves."
-              />
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">
+                Ascella Solutions is new.
+              </h2>
+              <div className="mt-5 space-y-4 text-lg text-foreground/70 leading-relaxed">
+                <p>
+                  I don&rsquo;t have a wall of client logos yet. What I do have is two products I built
+                  and still run, and the site you&rsquo;re reading now.
+                </p>
+                <p>
+                  HomeHelpersCo is the closest to what you&rsquo;d be buying: a site for local people,
+                  built to be found on Google and to turn a visit into a request. Have a look at
+                  both and judge for yourself.
+                </p>
+              </div>
             </div>
             <div className="lg:col-span-7 grid sm:grid-cols-2 gap-6">
               {apps.map((app) => (
                 <Link
                   key={app.id}
                   href={`/apps/${app.id}`}
-                  className="group overflow-hidden rounded-2xl border border-border bg-card hover:border-sky/50 transition-colors"
+                  className="group overflow-hidden rounded-2xl border border-border bg-background hover:border-sky/50 transition-colors"
                 >
                   <Image
                     src={app.hero.src}
@@ -155,7 +178,7 @@ export default function SolutionsPage() {
                     <AppIcon app={app} size={32} />
                     <div className="flex-1 min-w-0">
                       <p className="font-semibold text-foreground">{app.name}</p>
-                      <p className="text-sm text-foreground/60 truncate">{app.category}</p>
+                      <p className="text-sm text-foreground/60 truncate">{app.tagline}</p>
                     </div>
                     <Icon
                       name="arrowRight"
@@ -169,36 +192,26 @@ export default function SolutionsPage() {
         </Container>
       </section>
 
-      {/* FFT handoff */}
-      <section className="py-16 border-t border-border bg-card/50">
-        <Container size="md">
-          <div className="flex flex-col md:flex-row md:items-center gap-6 rounded-2xl border border-border bg-background p-8">
-            <Image
-              src="/fft-anvil-mark.webp"
-              alt=""
-              width={520}
-              height={267}
-              className="w-28 h-auto shrink-0 invert dark:invert-0 opacity-90"
-            />
-            <div className="flex-1">
-              <h2 className="text-xl font-semibold text-foreground">Need AI agents or automation?</h2>
-              <p className="mt-2 text-foreground/70 leading-relaxed">
-                That’s the work of our parent company, Frontier Forge Technologies. They build AI
-                agents, automation, and custom software that take routine work off your plate.
-              </p>
-            </div>
-            <Button variant="outline" href={FFT_URL} target="_blank" rel="noopener noreferrer" className="shrink-0">
-              frontierforge.tech
-              <Icon name="arrowUpRight" className="w-4 h-4" />
-            </Button>
-          </div>
+      {/* How it works */}
+      <section className="py-20 lg:py-28 border-t border-border">
+        <Container>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">How it works</h2>
+          <ol className="mt-12 grid md:grid-cols-3 gap-10 md:gap-8">
+            {process.map((step, i) => (
+              <li key={step.title} className="border-t border-foreground/20 pt-6">
+                <p className="text-sm text-foreground/50">Step {i + 1}</p>
+                <h3 className="mt-2 text-xl font-semibold text-foreground">{step.title}</h3>
+                <p className="mt-3 text-foreground/70 leading-relaxed">{step.description}</p>
+              </li>
+            ))}
+          </ol>
         </Container>
       </section>
 
       {/* FAQ */}
-      <section className="py-24 lg:py-32 border-t border-border">
+      <section className="py-20 lg:py-28 border-t border-border">
         <Container size="sm">
-          <SectionHeading eyebrow="Questions" title="Good to know" className="mb-10" />
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight mb-8">Questions people ask</h2>
           <div className="divide-y divide-border border-y border-border">
             {faqs.map((faq) => (
               <details key={faq.q} className="group py-6">
@@ -215,20 +228,37 @@ export default function SolutionsPage() {
               </details>
             ))}
           </div>
+          <p className="mt-8 text-sm text-foreground/60">
+            Looking for AI agents or automation? That&rsquo;s{' '}
+            <a href={FFT_URL} target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
+              Frontier Forge Technologies
+            </a>
+            , our parent company.
+          </p>
         </Container>
       </section>
 
-      <CtaBand
-        title="Let’s talk about your business."
-        description="Tell us what you’re working with and what isn’t working. The first conversation is free, and you’ll leave with a clear next step either way."
-      >
-        <Button variant="gradient" href={CONSULT_HREF}>
-          Book a free consult
-        </Button>
-        <Button variant="outline" href="mailto:hello@ascellastudios.com">
-          hello@ascellastudios.com
-        </Button>
-      </CtaBand>
+      {/* Contact */}
+      <section className="py-20 border-t border-border bg-card/50">
+        <Container size="md">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
+            <div>
+              <h2 className="text-3xl font-bold text-foreground tracking-tight">Tell me about your business.</h2>
+              <p className="mt-3 text-lg text-foreground/70">
+                Call, email, or send a message. I reply to every one myself.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+              <Button variant="accent" href={CONSULT_HREF}>
+                Book a free call
+              </Button>
+              <Button variant="outline" href={PHONE_HREF}>
+                {PHONE_DISPLAY}
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </section>
     </div>
   );
 }

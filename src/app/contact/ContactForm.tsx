@@ -193,7 +193,7 @@ export default function ContactForm() {
           />
         </div>
 
-        <Button type="submit" variant="gradient" disabled={status === 'submitting'} className="w-full">
+        <Button type="submit" variant="accent" disabled={status === 'submitting'} className="w-full">
           {status === 'submitting' ? (
             <>
               <svg

@@ -37,6 +37,12 @@ test("every image an app references exists in public/", () => {
 // Internal tool names never appear on public pages (FFT team rule).
 const internalNames = /command center|lab nexus|hermes|openclaw|lasso/i;
 
+test("Solutions prices are real, not placeholders", () => {
+  const html = readFileSync(join(root, ".next/server/app/solutions.html"), "utf8");
+  assert.doesNotMatch(html, />\s*TBD\s*</, "a Solutions price is still TBD");
+  assert.match(html, /\$\d/, "no dollar price found on /solutions");
+});
+
 test("built pages contain no internal tool names", () => {
   const dir = join(root, ".next/server/app");
   const htmlFiles = readdirSync(dir, { recursive: true }).filter((f) => String(f).endsWith(".html"));

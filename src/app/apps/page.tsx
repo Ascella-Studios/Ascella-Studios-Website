@@ -1,15 +1,11 @@
 import type { Metadata } from 'next';
-import AuroraBackground from '@/components/AuroraBackground';
+import Link from 'next/link';
 import Container from '@/components/Container';
-import SectionHeading from '@/components/SectionHeading';
 import AppShowcase from '@/components/AppShowcase';
-import CtaBand from '@/components/CtaBand';
-import Button from '@/components/Button';
 import { apps } from '@/data/apps';
-import { CONSULT_HREF } from '@/data/solutions';
 
 const description =
-  'The apps Ascella Studios builds and runs: StreamerGames, the chat-game arcade for Twitch streams, and HomeHelpersCo, a local request board for Wisconsin homeowners.';
+  'The apps Ascella Studios builds and runs: StreamerGames, a chat-game arcade for Twitch streams, and HomeHelpersCo, a request board for homeowners in Jefferson County, Wisconsin.';
 
 export const metadata: Metadata = {
   title: 'Apps',
@@ -25,23 +21,19 @@ export const metadata: Metadata = {
 export default function AppsPage() {
   return (
     <div className="bg-background">
-      <section className="relative overflow-hidden py-20 sm:py-28">
-        <AuroraBackground variant="subtle" />
-        <Container className="relative z-10">
-          <SectionHeading
-            as="h1"
-            eyebrow="Apps"
-            title={
-              <>
-                Built, launched, and <span className="text-gradient">run by us</span>
-              </>
-            }
-            description="Consumer software in any form it needs to take: SaaS, web platforms, and mobile. Each one starts with one real problem and stays focused on it."
-          />
+      <section className="pt-16 sm:pt-24 pb-14 border-b border-border">
+        <Container>
+          <h1 className="text-4xl md:text-6xl font-bold text-foreground tracking-tight max-w-3xl leading-[1.05]">
+            The apps we build and run
+          </h1>
+          <p className="mt-6 text-lg md:text-xl text-foreground/70 max-w-2xl leading-relaxed">
+            Two products, both live, both maintained by the people who built them. Each page covers
+            the problem, what we built, and the decisions behind it.
+          </p>
         </Container>
       </section>
 
-      <section className="pb-24 lg:pb-32">
+      <section className="py-20 lg:py-28">
         <Container>
           <div className="space-y-24 lg:space-y-32">
             {apps.map((app, i) => (
@@ -51,17 +43,17 @@ export default function AppsPage() {
         </Container>
       </section>
 
-      <CtaBand
-        title="Want something built with the same care?"
-        description="Ascella Solutions builds websites and landing pages for small businesses, and gives practical advice on software ideas."
-      >
-        <Button variant="gradient" href={CONSULT_HREF}>
-          Book a free consult
-        </Button>
-        <Button variant="outline" href="/solutions">
-          About Ascella Solutions
-        </Button>
-      </CtaBand>
+      <section className="py-14 border-t border-border bg-card/50">
+        <Container>
+          <p className="text-foreground/70">
+            Want something like this for your business?{' '}
+            <Link href="/solutions" className="text-accent font-medium hover:underline">
+              See Ascella Solutions
+            </Link>
+            .
+          </p>
+        </Container>
+      </section>
     </div>
   );
 }

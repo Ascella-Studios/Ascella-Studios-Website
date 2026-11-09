@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { apps } from '@/data/apps';
-import { FFT_URL } from '@/data/solutions';
+import { EMAIL, FFT_URL, PHONE_DISPLAY, PHONE_HREF } from '@/data/solutions';
 import { SocialIcon, socialLinks } from '@/components/icons';
+import Logo from '@/components/Logo';
 
 const columns = [
   {
@@ -34,8 +35,8 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid gap-10 md:grid-cols-[1.4fr_repeat(3,1fr)]">
           <div>
-            <span className="text-xl font-bold tracking-tight text-gradient">Ascella Studios</span>
-            <p className="text-foreground/60 mt-2 text-sm">Apps that elevate.</p>
+            <Logo size={24} />
+            <p className="text-foreground/60 mt-3 text-sm">Apps that elevate.</p>
             <p className="text-foreground/60 mt-4 text-sm">
               A{' '}
               <a
@@ -85,7 +86,11 @@ export default function Footer() {
 
         <div className="border-t border-border mt-12 pt-8 flex flex-col sm:flex-row justify-between gap-2 text-foreground/50 text-sm">
           <p>&copy; {new Date().getFullYear()} Ascella Studios. All rights reserved.</p>
-          <p>Watertown, Wisconsin</p>
+          <p>
+            Watertown, Wisconsin &middot;{' '}
+            <a href={PHONE_HREF} className="hover:text-accent">{PHONE_DISPLAY}</a> &middot;{' '}
+            <a href={`mailto:${EMAIL}`} className="hover:text-accent">{EMAIL}</a>
+          </p>
         </div>
       </div>
     </footer>
