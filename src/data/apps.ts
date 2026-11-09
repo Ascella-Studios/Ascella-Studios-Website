@@ -60,6 +60,8 @@ export interface App {
   stack: string[];
   hero: AppImage;
   gallery?: AppGalleryItem[];
+  /** Heading for the gallery section on the case study. */
+  galleryTitle?: string;
   /** Small print shown on the case study, e.g. trademark disclaimers. */
   note?: string;
 }
@@ -128,11 +130,12 @@ export const apps: App[] = [
     ],
     stack: ['Next.js', 'TypeScript', 'Supabase', 'Stripe', 'Claude API', 'Twitch chat', 'Vercel'],
     hero: {
-      src: '/apps/streamergames/duck-derby.jpg',
-      alt: 'Duck Derby: colourful rubber ducks racing down a glowing turquoise river',
-      width: 1280,
-      height: 720,
+      src: '/apps/streamergames/screen-desktop.jpg',
+      alt: 'The StreamerGames home page: “Your chat plays. You just go live.” beside a live Duck Derby demo',
+      width: 2880,
+      height: 1800,
     },
+    galleryTitle: 'The six games',
     gallery: [
       {
         src: '/apps/streamergames/duck-derby.jpg',
@@ -242,22 +245,6 @@ export const apps: App[] = [
       width: 1440,
       height: 900,
     },
-    gallery: [
-      {
-        src: '/apps/homehelpersco/screen-desktop.png',
-        alt: 'HomeHelpersCo home page',
-        caption: 'Home page · one request instead of ten calls',
-        width: 1440,
-        height: 900,
-      },
-      {
-        src: '/apps/homehelpersco/og-image.png',
-        alt: 'HomeHelpersCo brand lockup',
-        caption: 'Brand · roofline mark and hazard-orange accent',
-        width: 1200,
-        height: 630,
-      },
-    ],
   },
 ];
 

@@ -166,7 +166,7 @@ export default async function AppCaseStudyPage({ params }: Props) {
       {app.gallery && app.gallery.length > 1 && (
         <section className="py-20 border-t border-border">
           <Container>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight mb-10">A closer look</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight mb-10">{app.galleryTitle ?? 'A closer look'}</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {app.gallery.map((img) => (
                 <figure key={img.src} className="overflow-hidden rounded-2xl border border-border bg-card">
