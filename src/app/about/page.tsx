@@ -157,7 +157,7 @@ export default function AboutPage() {
             {family.map((member) => {
               const inner = (
                 <>
-                  <p className="text-sm text-foreground/50">{member.role}</p>
+                  <p className="text-sm text-foreground/60">{member.role}</p>
                   <h3 className="mt-2 text-xl font-semibold text-foreground flex items-center gap-2">
                     {member.name}
                     {member.href && <Icon name="arrowUpRight" className="w-4 h-4 text-foreground/40" />}

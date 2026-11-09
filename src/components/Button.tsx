@@ -6,7 +6,7 @@ const base =
 
 const variants = {
   primary: 'bg-foreground text-background hover:bg-foreground/90',
-  accent: 'bg-sky text-slate-950 hover:bg-sky/85',
+  accent: 'bg-accent-fill text-on-accent hover:bg-accent-fill/85',
   outline: 'border border-border text-foreground hover:bg-card',
 } as const;
 

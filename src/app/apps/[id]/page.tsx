@@ -99,7 +99,7 @@ export default async function AppCaseStudyPage({ params }: Props) {
           <dl className="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-px overflow-hidden rounded-2xl border border-border bg-border">
             {facts.map((fact) => (
               <div key={fact.label} className="bg-background p-5">
-                <dt className="text-sm text-foreground/50">{fact.label}</dt>
+                <dt className="text-sm text-foreground/60">{fact.label}</dt>
                 <dd className="mt-2 text-foreground font-medium">{fact.value}</dd>
               </div>
             ))}
@@ -205,7 +205,7 @@ export default async function AppCaseStudyPage({ params }: Props) {
               </ul>
             </div>
           </div>
-          {app.note && <p className="mt-12 text-xs text-foreground/50 max-w-2xl">{app.note}</p>}
+          {app.note && <p className="mt-12 text-xs text-foreground/60 max-w-2xl">{app.note}</p>}
         </Container>
       </section>
 
@@ -221,7 +221,7 @@ export default async function AppCaseStudyPage({ params }: Props) {
               >
                 <AppIcon app={other} size={44} />
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm text-foreground/50">Next</p>
+                  <p className="text-sm text-foreground/60">Next</p>
                   <p className="font-semibold text-foreground">{other.name}</p>
                 </div>
                 <Icon name="arrowRight" className="w-5 h-5 text-foreground/40 group-hover:text-accent group-hover:translate-x-0.5 transition-all" />
@@ -232,7 +232,7 @@ export default async function AppCaseStudyPage({ params }: Props) {
               className="group flex items-center gap-4 rounded-2xl border border-border bg-background p-5 hover:border-sky/50 transition-colors"
             >
               <div className="flex-1 min-w-0">
-                <p className="text-sm text-foreground/50">Need something built?</p>
+                <p className="text-sm text-foreground/60">Need something built?</p>
                 <p className="font-semibold text-foreground">Ascella Solutions</p>
               </div>
               <Icon name="arrowRight" className="w-5 h-5 text-foreground/40 group-hover:text-accent group-hover:translate-x-0.5 transition-all" />

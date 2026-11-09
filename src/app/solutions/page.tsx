@@ -161,7 +161,7 @@ export default function SolutionsPage() {
           <ol className="mt-12 grid md:grid-cols-3 gap-10 md:gap-8">
             {process.map((step, i) => (
               <li key={step.title} className="border-t border-foreground/20 pt-6">
-                <p className="text-sm text-foreground/50">Step {i + 1}</p>
+                <p className="text-sm text-foreground/60">Step {i + 1}</p>
                 <h3 className="mt-2 text-xl font-semibold text-foreground">{step.title}</h3>
                 <p className="mt-3 text-foreground/70 leading-relaxed">{step.description}</p>
               </li>

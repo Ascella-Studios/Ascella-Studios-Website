@@ -162,7 +162,7 @@ export default function ContactForm() {
 
         <div>
           <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
-            Subject <span className="text-foreground/50 font-normal">(optional)</span>
+            Subject <span className="text-foreground/60 font-normal">(optional)</span>
           </label>
           <input
             type="text"

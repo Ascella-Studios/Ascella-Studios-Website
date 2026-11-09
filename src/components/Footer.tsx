@@ -84,7 +84,7 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="border-t border-border mt-12 pt-8 flex flex-col sm:flex-row justify-between gap-2 text-foreground/50 text-sm">
+        <div className="border-t border-border mt-12 pt-8 flex flex-col sm:flex-row justify-between gap-2 text-foreground/60 text-sm">
           <p>&copy; {new Date().getFullYear()} Ascella Studios. All rights reserved.</p>
           <p>
             Watertown, Wisconsin &middot;{' '}
