@@ -4,10 +4,17 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #F8FAFC;
-  --foreground: #0F172A;
-  --card: #FFFFFF;
-  --border: #E2E8F0;
+  /* Light theme is a soft grey-blue, not white, so cards and sections separate */
+  --background: #EDF0F4;
+  --foreground: #0B1220;
+  --card: #F7F8FA;
+  --border: #D3D9E1;
+  /* Text-safe accents: brand hues darkened to pass WCAG AA on light surfaces */
+  --accent: #0369A1;
+  --positive: #15803D;
+  /* Filled accent buttons: deep blue with white text in light mode */
+  --accent-fill: #0369A1;
+  --on-accent: #FFFFFF;
 }
 
 html.dark {
@@ -15,6 +22,10 @@ html.dark {
   --foreground: #F1F5F9;
   --card: #101626;
   --border: #1E293B;
+  --accent: #38BDF8;
+  --positive: #4ADE80;
+  --accent-fill: #38BDF8;
+  --on-accent: #0A0F1E;
   color-scheme: dark;
 }
 
@@ -24,6 +35,10 @@ html.dark {
   --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-positive: var(--positive);
+  --color-accent-fill: var(--accent-fill);
+  --color-on-accent: var(--on-accent);
 
   /* Brand tokens — required by Footer and automation-generated pages */
   --color-sky: #38BDF8;
@@ -210,7 +225,7 @@ html:not(.dark) .aurora-subtle .aurora-blob {
 }
 
 .legal a {
-  color: var(--color-sky);
+  color: var(--accent);
 }
 
 .legal a:hover {

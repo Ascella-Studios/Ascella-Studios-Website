@@ -6,19 +6,47 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
+const DESCRIPTION =
+  'Ascella Studios is the consumer apps studio of Frontier Forge Technologies. We build and run our own apps, and build websites and software for small businesses and founders through Ascella Solutions.';
+
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Ascella Studios',
+  url: 'https://ascellastudios.com',
+  email: 'hello@ascellastudios.com',
+  slogan: 'Software, built carefully',
+  description: DESCRIPTION,
+  parentOrganization: {
+    '@type': 'Organization',
+    name: 'Frontier Forge Technologies',
+    url: 'https://frontierforge.tech',
+  },
+  telephone: '+1-920-941-4455',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Watertown',
+    addressRegion: 'WI',
+    addressCountry: 'US',
+  },
+  sameAs: ['https://github.com/Ascella-Studios'],
+};
+
 export const metadata: Metadata = {
   title: {
-    default: "Ascella Studios | Apps that elevate",
+    default: "Ascella Studios | Software, built carefully",
     template: "%s | Ascella Studios",
   },
   description:
-    "Ascella Studios is the consumer apps arm of Frontier Forge Technologies—small, carefully built apps for everyday life that solve real problems, load fast, and respect your time.",
+    DESCRIPTION,
   keywords: [
     "consumer app studio",
-    "app development",
-    "mobile apps",
-    "web apps",
-    "consumer apps",
+    "small business websites",
+    "website design Wisconsin",
+    "tech consulting",
+    "StreamerGames",
+    "HomeHelpersCo",
+    "Ascella Solutions",
     "Frontier Forge Technologies",
     "Ascella Studios",
   ],
@@ -30,15 +58,15 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://ascellastudios.com",
     siteName: "Ascella Studios",
-    title: "Ascella Studios | Apps that elevate",
+    title: "Ascella Studios | Software, built carefully",
     description:
-      "Ascella Studios is the consumer apps arm of Frontier Forge Technologies—small, carefully built apps for everyday life that solve real problems, load fast, and respect your time.",
+      DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ascella Studios | Apps that elevate",
+    title: "Ascella Studios | Software, built carefully",
     description:
-      "Ascella Studios is the consumer apps arm of Frontier Forge Technologies—small, carefully built apps for everyday life that solve real problems, load fast, and respect your time.",
+      DESCRIPTION,
   },
   robots: {
     index: true,
@@ -60,6 +88,10 @@ export default function RootLayout({
       <body
         className={`${GeistSans.variable} ${GeistMono.variable} antialiased min-h-screen flex flex-col`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <ThemeProvider>
           <a href="#main-content" className="skip-link">
             Skip to main content

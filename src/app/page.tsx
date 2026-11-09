@@ -1,190 +1,159 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import Waitlist from '@/components/Waitlist';
 import AuroraBackground from '@/components/AuroraBackground';
 import Container from '@/components/Container';
 import Button from '@/components/Button';
+import { AppCard, AppIcon } from '@/components/AppShowcase';
+import { Icon } from '@/components/icons';
+import FftStrip from '@/components/FftStrip';
+import { apps } from '@/data/apps';
+import { FFT_URL, offers, PHONE_DISPLAY, PHONE_HREF } from '@/data/solutions';
+import { STUDIO_UPDATES_LIST_ID } from '@/lib/waitlist';
 
-const ASCELLA_UPDATES_LIST_ID = '13';
-
-const beliefs = [
-  {
-    title: 'Do one thing well.',
-    description:
-      'The best apps solve one real problem completely instead of ten problems halfway. No bloated menus, no features nobody asked for.',
-  },
-  {
-    title: 'Fast is a feature.',
-    description:
-      'Every screen should load before you wonder if it’s broken. Speed is respect for your time, and we treat it that way.',
-  },
-  {
-    title: 'Honest by default.',
-    description:
-      'No dark patterns, no guilt-trip popups, no subscriptions that hide the cancel button. Software should earn its place on your phone.',
-  },
-  {
-    title: 'Small is a strength.',
-    description:
-      'A small team that sweats every detail beats a committee shipping compromises. Nothing here gets built by quota—every screen has someone’s name on it.',
-  },
-];
+const websiteFrom = offers.find((o) => o.id === 'websites')?.price;
 
 export default function Home() {
   return (
     <div className="bg-background">
-      {/* Hero Section */}
-      <section className="min-h-[calc(100vh-4rem)] flex flex-col justify-center relative overflow-hidden">
-        <AuroraBackground />
-        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 flex-1 flex items-center">
-          <div className="text-center w-full">
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-foreground/50 mb-6">
-              The consumer apps arm of Frontier Forge Technologies
-            </p>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-foreground tracking-tight">
-              Apps that <span className="text-gradient">elevate</span>
-            </h1>
-            <p className="mt-8 text-lg md:text-xl text-foreground/70 max-w-2xl mx-auto leading-relaxed">
-              We make small, carefully built apps for everyday life&mdash;software
-              that solves real problems, loads fast, and doesn&apos;t make you
-              want to throw your phone. The first one is in the works, and one
-              email gets you launch day.
-            </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="primary" href="#follow">
-                Follow the Build
-              </Button>
-              <Button variant="outline" href="/contact">
-                Get in Touch
-              </Button>
+      {/* Hero */}
+      <section className="relative overflow-hidden border-b border-border">
+        <AuroraBackground variant="subtle" />
+        <Container className="relative z-10 py-20 lg:py-28">
+          <div className="grid lg:grid-cols-12 gap-14 items-center">
+            <div className="lg:col-span-6">
+              <p className="text-sm text-foreground/60 mb-6">
+                Ascella Studios &middot; a{' '}
+                <a href={FFT_URL} target="_blank" rel="noopener noreferrer" className="text-foreground/80 hover:text-accent underline decoration-border underline-offset-4">
+                  Frontier Forge Technologies
+                </a>{' '}
+                company
+              </p>
+              <h1 className="text-4xl md:text-6xl font-bold text-foreground tracking-tight leading-[1.05]">
+                Software for everyday life, made in Wisconsin.
+              </h1>
+              <p className="mt-6 text-lg md:text-xl text-foreground/70 leading-relaxed">
+                Ascella Studios is the consumer apps studio of Frontier Forge Technologies. We build
+                and run our own apps, and through Ascella Solutions we build websites and software
+                for small businesses and founders.
+              </p>
+            </div>
+
+            {/* Two lanes */}
+            <div className="lg:col-span-6 grid gap-4">
+              <Link
+                href="/apps"
+                className="group rounded-2xl border border-border bg-card/80 backdrop-blur p-7 hover:border-sky/50 transition-colors"
+              >
+                <div className="flex items-center justify-between">
+                  <p className="text-sm font-medium text-accent">Apps</p>
+                  <div className="flex gap-1.5">
+                    {apps.map((app) => (
+                      <AppIcon key={app.id} app={app} size={24} />
+                    ))}
+                  </div>
+                </div>
+                <h2 className="mt-3 text-2xl font-semibold text-foreground">Our own products</h2>
+                <p className="mt-2 text-foreground/70 leading-relaxed">
+                  Consumer software we design, launch and keep running: web apps, SaaS and mobile.
+                </p>
+                <p className="mt-4 text-sm font-medium text-foreground inline-flex items-center gap-1.5">
+                  See the apps
+                  <Icon name="arrowRight" className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                </p>
+              </Link>
+              <Link
+                href="/solutions"
+                className="group rounded-2xl border border-border bg-card/80 backdrop-blur p-7 hover:border-sky/50 transition-colors"
+              >
+                <p className="text-sm font-medium text-accent">Ascella Solutions</p>
+                <h2 className="mt-3 text-2xl font-semibold text-foreground">Websites and software for clients</h2>
+                <p className="mt-2 text-foreground/70 leading-relaxed">
+                  Websites{websiteFrom ? ` from ${websiteFrom.replace(/^From /i, '')}` : ''}, plus web apps,
+                  SaaS and mobile apps for small businesses and founders. You work with Jared directly.
+                </p>
+                <p className="mt-4 text-sm font-medium text-foreground inline-flex items-center gap-1.5">
+                  Prices and how it works
+                  <Icon name="arrowRight" className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                </p>
+              </Link>
             </div>
           </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2">
-          <a
-            href="#beliefs"
-            className="text-foreground/50 hover:text-foreground/70 transition-colors"
-            aria-label="Scroll to explore"
-          >
-            <svg
-              className="w-6 h-6 animate-bounce"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 14l-7 7m0 0l-7-7m7 7V3"
-              />
-            </svg>
-          </a>
-        </div>
+        </Container>
       </section>
 
-      {/* What We Believe */}
-      <section id="beliefs" className="py-24 lg:py-32 scroll-mt-24">
-        <Container size="sm">
-          <h2 className="text-sm font-semibold text-sky tracking-wider uppercase mb-12">
-            What we believe
-          </h2>
-          <div className="space-y-10">
-            {beliefs.map((belief, i) => (
-              <div key={belief.title} className="flex gap-6 border-t border-border pt-10">
-                <span className="font-mono text-sm text-sky/60 pt-2 select-none">
-                  0{i + 1}
-                </span>
-                <div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
-                    {belief.title}
-                  </h3>
-                  <p className="text-foreground/70 text-lg leading-relaxed">
-                    {belief.description}
-                  </p>
-                </div>
-              </div>
+      {/* Apps */}
+      <section id="apps" className="py-20 lg:py-24 scroll-mt-16">
+        <Container>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">Our apps</h2>
+              <p className="mt-3 text-lg text-foreground/70">Live today, and run by the people who built them.</p>
+            </div>
+            <Link href="/apps" className="text-sm font-medium text-accent hover:underline">
+              All apps &rarr;
+            </Link>
+          </div>
+          <div className="grid lg:grid-cols-2 gap-5">
+            {apps.map((app) => (
+              <AppCard key={app.id} app={app} />
             ))}
           </div>
         </Container>
       </section>
 
-      {/* Follow the Build */}
-      <section id="follow" className="py-24 lg:py-32 border-y border-border bg-card/50 scroll-mt-24">
+      {/* Ascella Solutions */}
+      <section className="py-20 lg:py-24 border-t border-border bg-card/50">
         <Container size="md">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-sm font-semibold text-sky tracking-wider uppercase mb-4">
-                In the works
-              </h2>
-              <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                We&apos;re building our first app right now.
-              </h3>
-              <p className="text-foreground/70 text-lg leading-relaxed">
-                No fake hype, no vaporware&mdash;one app, built with care, shipping
-                when it&apos;s right. Leave your email and you get exactly one
-                message on launch day, plus a few honest updates from the
-                workbench in between.
-              </p>
-            </div>
-            <Waitlist
-              listId={ASCELLA_UPDATES_LIST_ID}
-              source="follow-the-build"
-              title="Follow the Build"
-              description="One email when our first app ships. A few honest updates in between. No spam, ever."
-              buttonText="Get the Launch Email"
-              successMessage="You're in. We'll write when there's something real to show."
+          <div className="grid md:grid-cols-[auto_1fr] gap-8 md:gap-12 items-center">
+            <Image
+              src="/team/jared.jpg"
+              alt="Jared Klopstein"
+              width={383}
+              height={351}
+              className="size-28 md:size-36 rounded-2xl object-cover border border-border"
             />
+            <div>
+              <h2 className="text-3xl font-bold text-foreground tracking-tight">Need a website or an app built?</h2>
+              <p className="mt-4 text-lg text-foreground/70 leading-relaxed">
+                That&rsquo;s Ascella Solutions. I build websites for small businesses, and web
+                apps, SaaS and mobile apps for businesses and founders.
+                {websiteFrom ? ` Websites start at ${websiteFrom.replace(/^From /i, '')}.` : ''}{' '}
+                The first call is free, and you deal with me the whole way.
+              </p>
+              <p className="mt-2 text-foreground/60">Jared Klopstein, founder</p>
+              <div className="mt-7 flex flex-col sm:flex-row gap-3">
+                <Button variant="accent" href="/solutions">
+                  Prices and how it works
+                </Button>
+                <Button variant="outline" href={PHONE_HREF}>
+                  Call {PHONE_DISPLAY}
+                </Button>
+              </div>
+            </div>
           </div>
         </Container>
       </section>
 
-      {/* Made by People Who Care */}
-      <section className="py-24 lg:py-32">
-        <Container size="sm" className="text-center">
-          <h2 className="text-sm font-semibold text-sky tracking-wider uppercase mb-12">
-            Made by people who care
-          </h2>
-          <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
-            Real people, sweating real details.
-          </h3>
-          <p className="text-foreground/70 text-lg leading-relaxed max-w-xl mx-auto mb-6">
-            Ascella is the consumer apps arm of Frontier Forge
-            Technologies&mdash;the part of the company that builds software for
-            everyday life. We&apos;d rather ship one app people love than ten
-            they tolerate, so there&apos;s no growth-hacking, no dark patterns,
-            no engagement tricks. Just software we&apos;d want on our own
-            phones.
-          </p>
-          <p className="text-foreground/70 text-lg leading-relaxed max-w-xl mx-auto">
-            The name comes from a star in Sagittarius. The goal is the same as
-            the tagline: build things that lift people up.
-          </p>
-        </Container>
-      </section>
+      <FftStrip />
 
-      {/* CTA Section */}
-      <section className="py-24 border-t border-border bg-card/50">
-        <Container size="sm" className="text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
-            Be there when it ships.
-          </h2>
-          <p className="text-foreground/70 mb-8 max-w-xl mx-auto text-lg">
-            One email at launch. A few honest updates before it. That&apos;s the
-            whole ask.
-          </p>
-          <Button variant="gradient" href="#follow" className="px-8">
-            Leave Your Email
-          </Button>
-          <p className="text-foreground/50 text-sm mt-6">
-            Got an idea worth building?{' '}
-            <Link href="/contact" className="text-sky hover:underline">
-              Tell us about it
-            </Link>
-            .
-          </p>
+      {/* Studio updates */}
+      <section id="follow" className="py-20 scroll-mt-16">
+        <Container size="sm">
+          <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
+            <div className="flex-1">
+              <h2 className="text-xl font-semibold text-foreground">Hear when we launch something</h2>
+              <p className="mt-1 text-foreground/60">A short email when there&rsquo;s a new app. That&rsquo;s it.</p>
+            </div>
+            <Waitlist
+              listId={STUDIO_UPDATES_LIST_ID}
+              source="studio-updates"
+              variant="inline"
+              buttonText="Sign up"
+              successMessage="Thanks. We’ll email you when there’s something new."
+              className="md:w-[26rem]"
+            />
+          </div>
         </Container>
       </section>
     </div>

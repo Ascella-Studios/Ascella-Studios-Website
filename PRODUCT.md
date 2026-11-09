@@ -3,21 +3,21 @@
 ## Identity
 Name: ascella-studios-website
 Repository: Ascella-Studios/Ascella-Studios-Website
-Description: Marketing website for Ascella Studios — an independent, one-person app studio making small, carefully built apps for everyday life.
+Description: Marketing website for Ascella Studios, the consumer apps studio of Frontier Forge Technologies. It showcases Ascella's products (StreamerGames, HomeHelpersCo) and sells Ascella Solutions: websites, custom software and consulting for small businesses and founders.
 
 ## Status
-Development
+Live at https://ascellastudios.com
 
 ## Stack
-Frontend:
-Backend:
-Database:
-Infrastructure:
+Frontend: Next.js 16 (App Router), TypeScript, Tailwind CSS 4
+Backend: Next.js route handlers (/api/contact, /api/waitlist)
+Database: none (contacts and signups go to HubSpot)
+Infrastructure: Vercel
 
 ## Deployment
-Provider:
-Staging:
-Production: TODO (cc onboard): fill this in.
+Provider: Vercel (auto-deploys on merge to main)
+Staging: Vercel preview deployment per pull request
+Production: https://ascellastudios.com
 
 ## Monitoring
 Provider:
@@ -50,6 +50,7 @@ External communications: owner approval required
 Permission changes: owner approval required
 
 ## Important Constraints
--
--
--
+- Ascella is "the consumer apps studio of Frontier Forge Technologies". Copy must not imply a finished legal subsidiary structure.
+- Ascella Solutions builds software a client's customers use (websites, landing pages, web apps, SaaS, mobile apps) plus consulting, for small businesses and founders. Frontier Forge builds the systems that run a business (AI agents, automation, internal tools); send that work to frontierforge.tech.
+- Every claim must be true today: no invented traction, users, or "coming soon" products. HomeHelpersCo copy never promises free quotes or vetted contractors.
+- Internal tool names never appear on public pages (enforced by tests/site-content.test.mjs).

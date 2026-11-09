@@ -1,15 +1,22 @@
 'use client';
 
 import Link from 'next/link';
+import Logo from '@/components/Logo';
 import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { useState, useSyncExternalStore } from 'react';
 
 const navigation = [
-  { name: 'Home', href: '/' },
+  { name: 'Apps', href: '/apps' },
+  { name: 'Solutions', href: '/solutions' },
   { name: 'About', href: '/about' },
   { name: 'Contact', href: '/contact' },
 ];
+
+const CONSULT_HREF = '/contact?topic=solutions';
+
+const isActivePath = (pathname: string, href: string) =>
+  pathname === href || pathname.startsWith(`${href}/`);
 
 function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
@@ -48,24 +55,23 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-md">
       <nav className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <span className="text-xl sm:text-2xl font-bold text-gradient">
-              Ascella Studios
-            </span>
+          <Link href="/" aria-label="Ascella Studios home">
+            <Logo />
           </Link>
 
           {/* Desktop navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navigation.map((item) => {
-              const isActive = pathname === item.href;
+              const isActive = isActivePath(pathname, item.href);
               return (
                 <Link
                   key={item.name}
                   href={item.href}
+                  aria-current={isActive ? 'page' : undefined}
                   className={`group relative text-sm font-medium transition-colors pb-1 ${
                     isActive
-                      ? 'text-sky'
-                      : 'text-foreground hover:text-sky'
+                      ? 'text-accent'
+                      : 'text-foreground/80 hover:text-foreground'
                   }`}
                 >
                   {item.name}
@@ -77,6 +83,13 @@ export default function Header() {
                 </Link>
               );
             })}
+
+            <Link
+              href={CONSULT_HREF}
+              className="rounded-lg bg-foreground px-4 py-2 text-sm font-medium text-background hover:bg-foreground/90 transition-colors"
+            >
+              Work with us
+            </Link>
 
             {mounted && <ThemeToggle />}
           </div>
@@ -110,15 +123,16 @@ export default function Header() {
           <div id="mobile-menu" className="md:hidden pb-4">
             <div className="flex flex-col gap-2">
               {navigation.map((item) => {
-                const isActive = pathname === item.href;
+                const isActive = isActivePath(pathname, item.href);
                 return (
                   <Link
                     key={item.name}
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
+                    aria-current={isActive ? 'page' : undefined}
                     className={`px-4 py-3 rounded-lg text-base font-medium transition-colors ${
                       isActive
-                        ? 'bg-sky/10 text-sky'
+                        ? 'bg-sky/10 text-accent'
                         : 'text-foreground hover:bg-card'
                     }`}
                   >
@@ -126,6 +140,13 @@ export default function Header() {
                   </Link>
                 );
               })}
+              <Link
+                href={CONSULT_HREF}
+                onClick={() => setMobileMenuOpen(false)}
+                className="mt-2 px-4 py-3 rounded-lg bg-foreground text-background text-base font-medium text-center"
+              >
+                Work with us
+              </Link>
             </div>
           </div>
         )}

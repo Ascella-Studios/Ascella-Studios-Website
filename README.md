@@ -1,8 +1,15 @@
 # Ascella Studios Website
 
-Marketing website for [Ascella Studios](https://ascellastudios.com) — an independent, one-person app studio making small, carefully built apps for everyday life.
+Marketing website for [Ascella Studios](https://ascellastudios.com), the consumer apps studio of
+[Frontier Forge Technologies](https://frontierforge.tech).
 
-The studio is pre-launch (no shipped apps yet), so the site is intentionally small: home, about, and contact, plus infrastructure that activates when the first app ships.
+The site has two lanes:
+
+- **Apps**: products Ascella builds and runs, currently [StreamerGames](https://streamergames.io) and
+  [HomeHelpersCo](https://www.homehelpersco.com). Each one gets a case study at `/apps/{id}`.
+- **Ascella Solutions** (`/solutions`): websites, landing pages, custom software (web apps, SaaS,
+  mobile) and consulting for small businesses and founders. Frontier Forge builds AI agents,
+  automation and internal tools, and the site points that work there.
 
 ## Stack
 
@@ -22,15 +29,21 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-Other commands: `npm run build` (production build), `npm run lint` (ESLint).
+Other commands: `npm run build` (production build), `npm run lint` (ESLint), `npm test` (run after
+`npm run build`; some tests read the build output). Tests import `.ts` files directly, so they need
+Node 22.18+ or 23.6+.
 
 ## Structure
 
-- `src/app/` — pages (home, about, contact, privacy, terms, 404)
-- `src/app/[appname]/privacy|terms` — dynamic per-app legal pages, served from `legal/{appname}/*.html`
-- `src/app/waitlist/` — per-app waitlist landing pages (empty until launch)
-- `src/components/Waitlist.tsx` — reusable email-capture component (HubSpot static segments)
-- `src/data/apps.ts` — app catalog (empty until the first app ships)
+- `src/app/`: pages (home, apps, apps/[id], solutions, about, contact, privacy, terms, 404)
+- `src/data/apps.ts`: the app catalog. It drives the home page, `/apps`, the case studies, the footer,
+  and the sitemap. Images live in `public/apps/{id}/`.
+- `src/data/solutions.ts`: Ascella Solutions offers and starting prices, process, FAQ, phone and email
+- `src/lib/waitlist.ts`: HubSpot lists that `/api/waitlist` accepts
+- `src/lib/contact.ts`: contact form topics (`/contact?topic=solutions` preselects one)
+- `src/app/[appname]/privacy|terms`: dynamic per-app legal pages, served from `legal/{appname}/*.html`
+- `src/app/waitlist/`: per-app waitlist landing pages (empty between launches)
+- `src/components/Waitlist.tsx`: reusable email-capture component (HubSpot static segments)
 
 ## ⚠️ Automation Contract
 
@@ -41,12 +54,14 @@ The Ascella app starter kit deploys files **into this repo** at app-submission t
 3. Commits and pushes (Vercel auto-deploys)
 
 Generated pages depend on `Waitlist.tsx`'s prop API, `/api/waitlist`, and the
-`text-foreground` / `bg-background` / `border-border` design tokens — don't
-rename or remove these. `legal/` and `src/app/waitlist/` are empty between
+`text-foreground` / `bg-background` / `border-border` design tokens. Don't
+rename or remove these. **New:** `/api/waitlist` only accepts registered list
+IDs. A new app's HubSpot list ID must be added to `src/lib/waitlist.ts`, or to
+the `WAITLIST_EXTRA_LIST_IDS` env var in Vercel, or its signups get a 400. `legal/` and `src/app/waitlist/` are empty between
 launches by design; each contains a README with details.
 
 ## HubSpot
 
-- Contact form creates/updates a contact and attaches the message as a Note
-- "Follow the Build" signup (home page) adds contacts to the **Ascella Updates** static segment (ILS ID 13)
+- Contact form creates/updates a contact and attaches the message, with its topic, as a Note
+- The studio-updates signup (home page) adds contacts to the **Ascella Updates** static segment (ILS ID 13)
 - Required token scopes are listed in `.env.local.example`

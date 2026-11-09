@@ -130,7 +130,7 @@ export default function Waitlist({
           <button
             type="submit"
             disabled={status === 'submitting'}
-            className="px-6 py-3 bg-gradient-to-r from-sky via-teal to-mint text-slate-950 font-medium rounded-lg hover:opacity-90 transition-opacity disabled:opacity-70 disabled:cursor-not-allowed whitespace-nowrap flex items-center justify-center gap-2"
+            className="px-6 py-3 bg-accent-fill text-on-accent font-medium rounded-lg hover:bg-accent-fill/85 transition-colors disabled:opacity-70 disabled:cursor-not-allowed whitespace-nowrap flex items-center justify-center gap-2"
           >
             {status === 'submitting' ? (
               <>
@@ -167,7 +167,7 @@ export default function Waitlist({
           <button
             type="submit"
             disabled={status === 'submitting'}
-            className="w-full px-4 py-2.5 bg-gradient-to-r from-sky via-teal to-mint text-slate-950 text-sm font-medium rounded-lg hover:opacity-90 transition-opacity disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            className="w-full px-4 py-2.5 bg-accent-fill text-on-accent text-sm font-medium rounded-lg hover:bg-accent-fill/85 transition-colors disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
             {status === 'submitting' ? (
               <>
@@ -212,7 +212,7 @@ export default function Waitlist({
         <button
           type="submit"
           disabled={status === 'submitting'}
-          className="w-full px-6 py-3 bg-gradient-to-r from-sky via-teal to-mint text-slate-950 font-medium rounded-lg hover:opacity-90 transition-opacity disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          className="w-full px-6 py-3 bg-accent-fill text-on-accent font-medium rounded-lg hover:bg-accent-fill/85 transition-colors disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
         >
           {status === 'submitting' ? (
             <>

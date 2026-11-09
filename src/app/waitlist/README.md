@@ -8,7 +8,9 @@ at submission time. Generated pages depend on:
 
 - `@/components/Waitlist` and its prop API (listId, source, title,
   description, buttonText, successMessage, variant)
-- `/api/waitlist`
+- `/api/waitlist`, which only accepts registered HubSpot list IDs. Add the
+  app's list ID to `src/lib/waitlist.ts` (or the `WAITLIST_EXTRA_LIST_IDS`
+  env var) when the page is deployed.
 - The design tokens `text-foreground`, `bg-background`, `border-border`
 
 This directory is empty between launches — that's expected.
