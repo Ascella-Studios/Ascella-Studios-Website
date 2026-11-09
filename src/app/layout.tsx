@@ -15,7 +15,7 @@ const organizationJsonLd = {
   name: 'Ascella Studios',
   url: 'https://ascellastudios.com',
   email: 'hello@ascellastudios.com',
-  slogan: 'Small software, built carefully',
+  slogan: 'Software, built carefully',
   description: DESCRIPTION,
   parentOrganization: {
     '@type': 'Organization',
@@ -34,7 +34,7 @@ const organizationJsonLd = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Ascella Studios | Small software, built carefully",
+    default: "Ascella Studios | Software, built carefully",
     template: "%s | Ascella Studios",
   },
   description:
@@ -58,13 +58,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://ascellastudios.com",
     siteName: "Ascella Studios",
-    title: "Ascella Studios | Small software, built carefully",
+    title: "Ascella Studios | Software, built carefully",
     description:
       DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ascella Studios | Small software, built carefully",
+    title: "Ascella Studios | Software, built carefully",
     description:
       DESCRIPTION,
   },

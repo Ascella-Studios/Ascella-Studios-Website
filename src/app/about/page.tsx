@@ -63,7 +63,7 @@ export default function AboutPage() {
       <section className="pt-16 sm:pt-24 pb-16 border-b border-border">
         <Container>
           <h1 className="text-4xl md:text-6xl font-bold text-foreground tracking-tight max-w-3xl leading-[1.05]">
-            A small studio in Watertown, Wisconsin
+            A studio in Watertown, Wisconsin
           </h1>
           <p className="mt-6 text-lg md:text-xl text-foreground/70 max-w-2xl leading-relaxed">
             Ascella Studios builds consumer software and keeps it running. It&rsquo;s the consumer
