@@ -7,8 +7,9 @@ The site has two lanes:
 
 - **Apps**: products Ascella builds and runs, currently [StreamerGames](https://streamergames.io) and
   [HomeHelpersCo](https://www.homehelpersco.com). Each one gets a case study at `/apps/{id}`.
-- **Ascella Solutions** (`/solutions`): website builds, landing pages, and consulting for small
-  businesses. Agent and automation work belongs to Frontier Forge, and the site points people there.
+- **Ascella Solutions** (`/solutions`): websites, landing pages, custom software (web apps, SaaS,
+  mobile) and consulting for small businesses and founders. Frontier Forge builds AI agents,
+  automation and internal tools, and the site points that work there.
 
 ## Stack
 

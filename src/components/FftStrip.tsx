@@ -21,9 +21,9 @@ export default function FftStrip() {
               Part of Frontier Forge Technologies
             </h2>
             <p className="mt-3 text-foreground/70 leading-relaxed max-w-xl">
-              Ascella is the consumer side of Frontier Forge. The rest of Frontier Forge builds AI
-              agents, automation and custom software for businesses. If that&rsquo;s what you need,
-              they&rsquo;re the people to talk to.
+              Ascella builds the software people use. The rest of Frontier Forge builds the systems
+              that run a business: AI agents, automation and internal tools. If that&rsquo;s what
+              you need, they&rsquo;re the people to talk to.
             </p>
           </div>
           <a

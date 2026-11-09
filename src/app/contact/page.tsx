@@ -6,7 +6,7 @@ import { Icon, type IconName } from '@/components/icons';
 import { EMAIL, PHONE_DISPLAY, PHONE_HREF } from '@/data/solutions';
 
 const description =
-  'Get in touch with Ascella Studios about our apps, a website or consult through Ascella Solutions, or a partnership.';
+  'Get in touch with Ascella Studios about our apps, a website, software project or consult through Ascella Solutions, or a partnership.';
 
 export const metadata: Metadata = {
   title: 'Contact',

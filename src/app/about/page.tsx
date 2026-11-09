@@ -24,13 +24,13 @@ const family = [
   {
     name: 'Frontier Forge Technologies',
     role: 'Parent company',
-    description: 'Builds AI agents, automation and custom software for businesses.',
+    description: 'Builds AI agents, automation and internal tools that run a business.',
     href: FFT_URL,
   },
   {
     name: 'Ascella Studios',
     role: 'Consumer apps',
-    description: 'Our own products, plus websites and consulting through Ascella Solutions.',
+    description: 'Our own products, plus websites and software for clients through Ascella Solutions.',
     current: true,
   },
   {
@@ -95,7 +95,7 @@ export default function AboutPage() {
                 <Link href="/solutions" className="text-foreground underline decoration-border underline-offset-4 hover:text-accent">
                   Ascella Solutions
                 </Link>
-                , which builds websites for small businesses.
+                , which builds websites and software for clients.
               </p>
               <p>The name is a star in Sagittarius.</p>
             </div>
@@ -192,7 +192,7 @@ export default function AboutPage() {
               See the apps
             </Button>
             <Button variant="outline" href="/solutions">
-              Need a website?
+              Need something built?
             </Button>
           </div>
         </Container>

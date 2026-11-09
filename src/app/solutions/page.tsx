@@ -16,13 +16,13 @@ import {
 } from '@/data/solutions';
 
 const description =
-  'Websites, landing pages and consulting for small businesses, from Jared Klopstein at Ascella Studios in Watertown, Wisconsin. Clear starting prices and a free first call.';
+  'Websites, custom software and consulting for small businesses and founders, from Jared Klopstein at Ascella Studios in Watertown, Wisconsin. Clear starting prices and a free first call.';
 
 export const metadata: Metadata = {
-  title: 'Ascella Solutions: websites for small businesses',
+  title: 'Ascella Solutions: websites and software for small businesses and founders',
   description,
   openGraph: {
-    title: 'Ascella Solutions | Websites for small businesses',
+    title: 'Ascella Solutions | Websites and software for small businesses and founders',
     description,
     url: 'https://ascellastudios.com/solutions',
   },
@@ -39,12 +39,13 @@ export default function SolutionsPage() {
             <div className="lg:col-span-7">
               <p className="text-sm font-medium text-accent mb-5">Ascella Solutions</p>
               <h1 className="text-4xl md:text-6xl font-bold text-foreground tracking-tight leading-[1.05]">
-                Websites for small businesses, built by someone you can call.
+                Websites and software, built by someone you can call.
               </h1>
               <p className="mt-6 text-lg md:text-xl text-foreground/70 leading-relaxed max-w-2xl">
                 I&rsquo;m Jared Klopstein, founder of Ascella Studios in Watertown, Wisconsin. Through
-                Ascella Solutions I build websites for shops, trades, restaurants, clinics and
-                nonprofits, and you deal with me from the first call to launch day.
+                Ascella Solutions I build websites for small businesses, and web apps, SaaS products
+                and mobile apps for businesses and founders. You deal with me from the first call
+                to launch day.
               </p>
               <div className="mt-9 flex flex-col sm:flex-row gap-3">
                 <Button variant="accent" href={CONSULT_HREF}>
@@ -107,11 +108,12 @@ export default function SolutionsPage() {
           <div className="max-w-2xl">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">What it costs</h2>
             <p className="mt-4 text-lg text-foreground/70">
-              These are starting prices. After we talk, you get a fixed quote in writing, so the
-              number you agree to is the number you pay.
+              Websites and landing pages have starting prices. Software is quoted per project,
+              because no two are alike. Either way, you get the price in writing before any work
+              starts.
             </p>
           </div>
-          <div className="mt-12 grid lg:grid-cols-3 gap-px rounded-2xl overflow-hidden border border-border bg-border">
+          <div className="mt-12 grid md:grid-cols-2 gap-px rounded-2xl overflow-hidden border border-border bg-border">
             {offers.map((offer) => (
               <article key={offer.id} id={offer.id} className="scroll-mt-24 bg-background p-8 flex flex-col">
                 <div className="flex items-center gap-3 text-foreground">

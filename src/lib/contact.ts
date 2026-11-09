@@ -2,7 +2,7 @@
 // and the API route (for validation and the HubSpot note label).
 
 export const CONTACT_TOPICS = {
-  solutions: 'Ascella Solutions: website or consult',
+  solutions: 'Ascella Solutions: website, software or consult',
   apps: 'Our apps (StreamerGames, HomeHelpersCo)',
   partnerships: 'Partnerships or investment',
   other: 'Something else',

@@ -34,8 +34,8 @@ export default function Home() {
               </h1>
               <p className="mt-6 text-lg md:text-xl text-foreground/70 leading-relaxed">
                 Ascella Studios is the consumer apps studio of Frontier Forge Technologies. We build
-                and run our own apps, and through Ascella Solutions we build websites for small
-                businesses.
+                and run our own apps, and through Ascella Solutions we build websites and software
+                for small businesses and founders.
               </p>
             </div>
 
@@ -67,10 +67,10 @@ export default function Home() {
                 className="group rounded-2xl border border-border bg-card/80 backdrop-blur p-7 hover:border-sky/50 transition-colors"
               >
                 <p className="text-sm font-medium text-accent">Ascella Solutions</p>
-                <h2 className="mt-3 text-2xl font-semibold text-foreground">Websites for small businesses</h2>
+                <h2 className="mt-3 text-2xl font-semibold text-foreground">Websites and software for clients</h2>
                 <p className="mt-2 text-foreground/70 leading-relaxed">
-                  New sites, landing pages and tech advice{websiteFrom ? `, from ${websiteFrom.replace(/^From /i, '')}` : ''}. You
-                  work with Jared directly.
+                  Websites{websiteFrom ? ` from ${websiteFrom.replace(/^From /i, '')}` : ''}, plus web apps,
+                  SaaS and mobile apps for small businesses and founders. You work with Jared directly.
                 </p>
                 <p className="mt-4 text-sm font-medium text-foreground inline-flex items-center gap-1.5">
                   Prices and how it works
@@ -114,10 +114,10 @@ export default function Home() {
               className="size-28 md:size-36 rounded-2xl object-cover border border-border"
             />
             <div>
-              <h2 className="text-3xl font-bold text-foreground tracking-tight">Need a website for your business?</h2>
+              <h2 className="text-3xl font-bold text-foreground tracking-tight">Need a website or an app built?</h2>
               <p className="mt-4 text-lg text-foreground/70 leading-relaxed">
-                That&rsquo;s Ascella Solutions. I build websites and landing pages for small
-                businesses, and help owners figure out which tech is worth paying for.
+                That&rsquo;s Ascella Solutions. I build websites for small businesses, and web
+                apps, SaaS and mobile apps for businesses and founders.
                 {websiteFrom ? ` Websites start at ${websiteFrom.replace(/^From /i, '')}.` : ''}{' '}
                 The first call is free, and you deal with me the whole way.
               </p>

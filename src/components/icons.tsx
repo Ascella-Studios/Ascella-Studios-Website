@@ -5,6 +5,7 @@ const outline: Record<string, ReactNode> = {
   arrowRight: <path d="M13 7l5 5m0 0l-5 5m5-5H6" />,
   arrowUpRight: <path d="M7 17L17 7M9 7h8v8" />,
   check: <path d="M5 13l4 4L19 7" />,
+  code: <path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />,
   globe: (
     <path d="M12 21a9 9 0 100-18 9 9 0 000 18zm0 0c2.5-2.4 3.75-5.4 3.75-9S14.5 5.4 12 3m0 18c-2.5-2.4-3.75-5.4-3.75-9S9.5 5.4 12 3M3.5 9h17M3.5 15h17" />
   ),

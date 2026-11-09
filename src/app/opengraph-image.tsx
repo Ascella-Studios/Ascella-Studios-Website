@@ -41,7 +41,7 @@ export default async function Image() {
             Software, built carefully.
           </span>
           <span style={{ fontSize: '30px', color: '#94A3B8', marginTop: '24px' }}>
-            Our own apps, and websites for small businesses.
+            Our own apps, plus websites and software for clients.
           </span>
         </div>
 

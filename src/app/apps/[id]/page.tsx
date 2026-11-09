@@ -232,7 +232,7 @@ export default async function AppCaseStudyPage({ params }: Props) {
               className="group flex items-center gap-4 rounded-2xl border border-border bg-background p-5 hover:border-sky/50 transition-colors"
             >
               <div className="flex-1 min-w-0">
-                <p className="text-sm text-foreground/50">Need a website?</p>
+                <p className="text-sm text-foreground/50">Need something built?</p>
                 <p className="font-semibold text-foreground">Ascella Solutions</p>
               </div>
               <Icon name="arrowRight" className="w-5 h-5 text-foreground/40 group-hover:text-accent group-hover:translate-x-0.5 transition-all" />
