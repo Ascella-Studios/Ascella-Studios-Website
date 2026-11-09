@@ -4,7 +4,8 @@ import Waitlist from '@/components/Waitlist';
 import AuroraBackground from '@/components/AuroraBackground';
 import Container from '@/components/Container';
 import Button from '@/components/Button';
-import AppShowcase, { AppIcon } from '@/components/AppShowcase';
+import { AppCard, AppIcon } from '@/components/AppShowcase';
+import { Icon } from '@/components/icons';
 import FftStrip from '@/components/FftStrip';
 import { apps } from '@/data/apps';
 import { FFT_URL, offers, PHONE_DISPLAY, PHONE_HREF } from '@/data/solutions';
@@ -13,7 +14,6 @@ import { STUDIO_UPDATES_LIST_ID } from '@/lib/waitlist';
 const websiteFrom = offers.find((o) => o.id === 'websites')?.price;
 
 export default function Home() {
-  const [first, second] = apps;
   return (
     <div className="bg-background">
       {/* Hero */}
@@ -33,66 +33,70 @@ export default function Home() {
                 Software for everyday life, made in Wisconsin.
               </h1>
               <p className="mt-6 text-lg md:text-xl text-foreground/70 leading-relaxed">
-                We build and run{' '}
-                <Link href="/apps/streamergames" className="text-foreground underline decoration-border underline-offset-4 hover:text-accent">
-                  StreamerGames
-                </Link>
-                , a chat-game arcade for Twitch streamers, and{' '}
-                <Link href="/apps/homehelpersco" className="text-foreground underline decoration-border underline-offset-4 hover:text-accent">
-                  HomeHelpersCo
-                </Link>
-                , a request board for homeowners in Jefferson County. We also build websites for
-                small businesses.
+                Ascella Studios is the consumer apps studio of Frontier Forge Technologies. We build
+                and run our own apps, and through Ascella Solutions we build websites for small
+                businesses.
               </p>
-              <div className="mt-9 flex flex-col sm:flex-row gap-3">
-                <Button variant="primary" href="#apps">
-                  See the apps
-                </Button>
-                <Button variant="outline" href="/solutions">
-                  Need a website?
-                </Button>
-              </div>
             </div>
 
-            {/* Product stack */}
-            {first && second && (
-              <div className="lg:col-span-6 relative h-[22rem] sm:h-[26rem] hidden sm:block" aria-hidden>
-                <Link
-                  href={`/apps/${second.id}`}
-                  tabIndex={-1}
-                  className="absolute right-0 top-0 w-[78%] overflow-hidden rounded-2xl border border-border bg-card shadow-2xl shadow-black/30 rotate-2 hover:rotate-0 transition-transform duration-500"
-                >
-                  <Image src={second.hero.src} alt="" width={second.hero.width} height={second.hero.height} priority sizes="520px" className="w-full h-auto aspect-[16/10] object-cover object-top" />
-                </Link>
-                <Link
-                  href={`/apps/${first.id}`}
-                  tabIndex={-1}
-                  className="absolute left-0 bottom-0 w-[72%] overflow-hidden rounded-2xl border border-border bg-card shadow-2xl shadow-black/40 -rotate-2 hover:rotate-0 transition-transform duration-500"
-                >
-                  <Image src={first.hero.src} alt="" width={first.hero.width} height={first.hero.height} priority sizes="480px" className="w-full h-auto aspect-[16/10] object-cover" />
-                  <span className="absolute left-3 bottom-3 inline-flex items-center gap-2 rounded-full bg-background/85 backdrop-blur px-3 py-1.5 text-xs font-medium text-foreground">
-                    <AppIcon app={first} size={16} />
-                    {first.name}
-                  </span>
-                </Link>
-              </div>
-            )}
+            {/* Two lanes */}
+            <div className="lg:col-span-6 grid gap-4">
+              <Link
+                href="/apps"
+                className="group rounded-2xl border border-border bg-card/80 backdrop-blur p-7 hover:border-sky/50 transition-colors"
+              >
+                <div className="flex items-center justify-between">
+                  <p className="text-sm font-medium text-accent">Apps</p>
+                  <div className="flex gap-1.5">
+                    {apps.map((app) => (
+                      <AppIcon key={app.id} app={app} size={24} />
+                    ))}
+                  </div>
+                </div>
+                <h2 className="mt-3 text-2xl font-semibold text-foreground">Our own products</h2>
+                <p className="mt-2 text-foreground/70 leading-relaxed">
+                  Consumer software we design, launch and keep running: web apps, SaaS and mobile.
+                </p>
+                <p className="mt-4 text-sm font-medium text-foreground inline-flex items-center gap-1.5">
+                  See the apps
+                  <Icon name="arrowRight" className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                </p>
+              </Link>
+              <Link
+                href="/solutions"
+                className="group rounded-2xl border border-border bg-card/80 backdrop-blur p-7 hover:border-sky/50 transition-colors"
+              >
+                <p className="text-sm font-medium text-accent">Ascella Solutions</p>
+                <h2 className="mt-3 text-2xl font-semibold text-foreground">Websites for small businesses</h2>
+                <p className="mt-2 text-foreground/70 leading-relaxed">
+                  New sites, landing pages and tech advice{websiteFrom ? `, from ${websiteFrom.replace(/^From /i, '')}` : ''}. You
+                  work with Jared directly.
+                </p>
+                <p className="mt-4 text-sm font-medium text-foreground inline-flex items-center gap-1.5">
+                  Prices and how it works
+                  <Icon name="arrowRight" className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                </p>
+              </Link>
+            </div>
           </div>
         </Container>
       </section>
 
       {/* Apps */}
-      <section id="apps" className="py-20 lg:py-28 scroll-mt-16">
+      <section id="apps" className="py-20 lg:py-24 scroll-mt-16">
         <Container>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">What we&rsquo;ve shipped</h2>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">Our apps</h2>
+              <p className="mt-3 text-lg text-foreground/70">Live today, and run by the people who built them.</p>
+            </div>
             <Link href="/apps" className="text-sm font-medium text-accent hover:underline">
               All apps &rarr;
             </Link>
           </div>
-          <div className="space-y-24">
-            {apps.map((app, i) => (
-              <AppShowcase key={app.id} app={app} flip={i % 2 === 1} />
+          <div className="grid lg:grid-cols-2 gap-5">
+            {apps.map((app) => (
+              <AppCard key={app.id} app={app} />
             ))}
           </div>
         </Container>
@@ -114,7 +118,7 @@ export default function Home() {
               <p className="mt-4 text-lg text-foreground/70 leading-relaxed">
                 That&rsquo;s Ascella Solutions. I build websites and landing pages for small
                 businesses, and help owners figure out which tech is worth paying for.
-                {websiteFrom && websiteFrom !== 'TBD' ? ` Websites start at ${websiteFrom.replace(/^From /i, '')}.` : ''}{' '}
+                {websiteFrom ? ` Websites start at ${websiteFrom.replace(/^From /i, '')}.` : ''}{' '}
                 The first call is free, and you deal with me the whole way.
               </p>
               <p className="mt-2 text-foreground/60">Jared Klopstein, founder</p>

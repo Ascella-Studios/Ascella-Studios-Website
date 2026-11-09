@@ -3,9 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Container from '@/components/Container';
 import Button from '@/components/Button';
-import { AppIcon } from '@/components/AppShowcase';
 import { Icon } from '@/components/icons';
-import { apps } from '@/data/apps';
 import {
   CONSULT_HREF,
   EMAIL,
@@ -44,9 +42,9 @@ export default function SolutionsPage() {
                 Websites for small businesses, built by someone you can call.
               </h1>
               <p className="mt-6 text-lg md:text-xl text-foreground/70 leading-relaxed max-w-2xl">
-                I&rsquo;m Jared Klopstein. I build and run two live web products from Watertown,
-                Wisconsin. Through Ascella Solutions I build websites for shops, trades, restaurants,
-                clinics and nonprofits, and you deal with me from the first call to launch day.
+                I&rsquo;m Jared Klopstein, founder of Ascella Studios in Watertown, Wisconsin. Through
+                Ascella Solutions I build websites for shops, trades, restaurants, clinics and
+                nonprofits, and you deal with me from the first call to launch day.
               </p>
               <div className="mt-9 flex flex-col sm:flex-row gap-3">
                 <Button variant="accent" href={CONSULT_HREF}>
@@ -139,56 +137,18 @@ export default function SolutionsPage() {
         </Container>
       </section>
 
-      {/* Honest proof */}
-      <section className="py-20 lg:py-28 border-t border-border bg-card/50">
-        <Container>
-          <div className="grid lg:grid-cols-12 gap-12 items-start">
-            <div className="lg:col-span-5">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">
-                Ascella Solutions is new.
-              </h2>
-              <div className="mt-5 space-y-4 text-lg text-foreground/70 leading-relaxed">
-                <p>
-                  I don&rsquo;t have a wall of client logos yet. What I do have is two products I built
-                  and still run, and the site you&rsquo;re reading now.
-                </p>
-                <p>
-                  HomeHelpersCo is the closest to what you&rsquo;d be buying: a site for local people,
-                  built to be found on Google and to turn a visit into a request. Have a look at
-                  both and judge for yourself.
-                </p>
-              </div>
-            </div>
-            <div className="lg:col-span-7 grid sm:grid-cols-2 gap-6">
-              {apps.map((app) => (
-                <Link
-                  key={app.id}
-                  href={`/apps/${app.id}`}
-                  className="group overflow-hidden rounded-2xl border border-border bg-background hover:border-sky/50 transition-colors"
-                >
-                  <Image
-                    src={app.hero.src}
-                    alt={app.hero.alt}
-                    width={app.hero.width}
-                    height={app.hero.height}
-                    sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"
-                    className="w-full h-auto aspect-video object-cover object-top"
-                  />
-                  <div className="p-5 flex items-center gap-3">
-                    <AppIcon app={app} size={32} />
-                    <div className="flex-1 min-w-0">
-                      <p className="font-semibold text-foreground">{app.name}</p>
-                      <p className="text-sm text-foreground/60 truncate">{app.tagline}</p>
-                    </div>
-                    <Icon
-                      name="arrowRight"
-                      className="w-5 h-5 text-foreground/40 group-hover:text-accent group-hover:translate-x-0.5 transition-all"
-                    />
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
+      {/* Honest note */}
+      <section className="py-16 border-t border-border bg-card/50">
+        <Container size="md">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight">Ascella Solutions is new.</h2>
+          <p className="mt-4 text-lg text-foreground/70 leading-relaxed">
+            I don&rsquo;t have a wall of client logos yet. What I do have is the software I&rsquo;ve
+            built and still run, including{' '}
+            <Link href="/apps" className="text-foreground underline decoration-border underline-offset-4 hover:text-accent">
+              our own apps
+            </Link>{' '}
+            and the site you&rsquo;re reading now. Have a look and judge the work for yourself.
+          </p>
         </Container>
       </section>
 

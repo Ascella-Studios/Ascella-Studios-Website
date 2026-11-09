@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 const DESCRIPTION =
-  'Ascella Studios is the consumer apps studio of Frontier Forge Technologies. We build and run StreamerGames and HomeHelpersCo, and help small businesses with websites and consulting through Ascella Solutions.';
+  'Ascella Studios is the consumer apps studio of Frontier Forge Technologies. We build and run our own apps, and build websites for small businesses through Ascella Solutions.';
 
 const organizationJsonLd = {
   '@context': 'https://schema.org',

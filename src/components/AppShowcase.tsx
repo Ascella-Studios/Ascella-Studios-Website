@@ -32,7 +32,37 @@ export function AppIcon({ app, size = 40 }: { app: App; size?: number }) {
   );
 }
 
-/** Large alternating feature row used on the home page and /apps. */
+/** Compact card: image, name, one line. Used on the home page. */
+export function AppCard({ app }: { app: App }) {
+  return (
+    <Link
+      href={`/apps/${app.id}`}
+      className="group flex flex-col sm:flex-row gap-5 rounded-2xl border border-border bg-card p-4 hover:border-sky/50 transition-colors"
+    >
+      <Image
+        src={app.hero.src}
+        alt=""
+        width={app.hero.width}
+        height={app.hero.height}
+        sizes="(min-width: 640px) 200px, 100vw"
+        className="w-full sm:w-48 aspect-video rounded-xl object-cover object-top border border-border shrink-0"
+      />
+      <div className="flex-1 min-w-0 self-center">
+        <div className="flex items-center gap-2.5">
+          <AppIcon app={app} size={24} />
+          <h3 className="font-semibold text-foreground">{app.name}</h3>
+        </div>
+        <p className="mt-2 text-sm text-foreground/70 leading-relaxed">{app.tagline}</p>
+        <p className="mt-3 text-sm font-medium text-accent inline-flex items-center gap-1.5">
+          How we built it
+          <Icon name="arrowRight" className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+        </p>
+      </div>
+    </Link>
+  );
+}
+
+/** Large alternating feature row used on /apps. */
 export default function AppShowcase({ app, flip = false, priority = false }: { app: App; flip?: boolean; priority?: boolean }) {
   return (
     <article className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">

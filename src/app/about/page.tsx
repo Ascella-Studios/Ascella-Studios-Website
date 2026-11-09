@@ -7,7 +7,7 @@ import { Icon } from '@/components/icons';
 import { FFT_URL } from '@/data/solutions';
 
 const description =
-  'Ascella Studios is the consumer apps studio of Frontier Forge Technologies, founded by Jared Klopstein in Watertown, Wisconsin. It builds and runs StreamerGames and HomeHelpersCo.';
+  'Ascella Studios is the consumer apps studio of Frontier Forge Technologies, founded by Jared Klopstein in Watertown, Wisconsin.';
 
 export const metadata: Metadata = {
   title: 'About',
@@ -44,17 +44,17 @@ const family = [
 const commitments = [
   {
     title: 'Free means free',
-    body: 'The StreamerGames free plan has no daily time limit. HomeHelpersCo costs homeowners nothing. If something is free, we don’t quietly cap it.',
+    body: 'If something we make is free, we don’t quietly cap it or hide the useful part behind a paywall later.',
   },
   {
     title: 'Cancelling isn’t a maze',
-    body: 'A streamer cancels StreamerGames Pro from their own account page. Nobody has to email us and ask.',
+    body: 'Any paid plan we sell can be cancelled by you, from your account. Nobody has to email us and ask.',
   },
   {
     title: 'We only claim what we can back up',
-    body: 'That’s why HomeHelpersCo never calls contractors “vetted”. We can’t check that, so we don’t say it.',
+    body: 'No invented numbers, no badges we can’t verify, no promises our products don’t keep.',
   },
-];
+]
 
 export default function AboutPage() {
   return (
@@ -79,20 +79,11 @@ export default function AboutPage() {
             <div className="lg:col-span-7 space-y-6 text-foreground/75 text-lg leading-relaxed">
               <p>
                 Jared Klopstein started Ascella in early 2026 to build apps. The first months were
-                mostly experiments, and most of those stayed experiments. Two turned into real
-                products.
-              </p>
-              <p>
-                <Link href="/apps/streamergames" className="text-foreground underline decoration-border underline-offset-4 hover:text-accent">
-                  StreamerGames
-                </Link>{' '}
-                went live in September 2026. It gives Twitch chat something to do: six games a
-                streamer adds to OBS once, which viewers play by typing in chat.{' '}
-                <Link href="/apps/homehelpersco" className="text-foreground underline decoration-border underline-offset-4 hover:text-accent">
-                  HomeHelpersCo
-                </Link>{' '}
-                is closer to home. Homeowners in Jefferson County describe a job once and it goes to
-                local contractors.
+                mostly experiments, and a couple of them turned into{' '}
+                <Link href="/apps" className="text-foreground underline decoration-border underline-offset-4 hover:text-accent">
+                  products that are live today
+                </Link>
+                .
               </p>
               <p>
                 Along the way Jared co-founded{' '}
@@ -145,8 +136,7 @@ export default function AboutPage() {
         <Container>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">What we hold ourselves to</h2>
           <p className="mt-3 text-lg text-foreground/70 max-w-2xl">
-            Every studio has values on its About page. These are the ones you can check in our
-            products.
+            Every studio has values on its About page. These are the ones you can hold us to.
           </p>
           <div className="mt-12 grid md:grid-cols-3 gap-8">
             {commitments.map((c) => (
