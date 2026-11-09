@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Client } from '@hubspot/api-client';
 import { FilterOperatorEnum } from '@hubspot/api-client/lib/codegen/crm/contacts';
+import { isAllowedListId } from '@/lib/waitlist';
 
 interface WaitlistData {
   email: string;
@@ -19,6 +20,11 @@ export async function POST(request: NextRequest) {
         { error: 'Email and listId are required' },
         { status: 400 }
       );
+    }
+
+    // Only lists this site has registered — see src/lib/waitlist.ts
+    if (!isAllowedListId(listId)) {
+      return NextResponse.json({ error: 'Unknown signup list' }, { status: 400 });
     }
 
     // Basic email validation

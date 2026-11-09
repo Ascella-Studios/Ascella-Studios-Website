@@ -2,7 +2,7 @@ import Link from 'next/link';
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react';
 
 const base =
-  'inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-medium transition-colors';
+  'inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-medium transition-colors disabled:opacity-70 disabled:cursor-not-allowed';
 
 const variants = {
   primary: 'bg-foreground text-background hover:bg-foreground/90',
@@ -27,8 +27,9 @@ export default function Button({ variant = 'primary', className = '', children, 
 
   if ('href' in rest && typeof rest.href === 'string') {
     const { href, ...anchorProps } = rest as { href: string } & AnchorHTMLAttributes<HTMLAnchorElement>;
-    const isExternal = href.startsWith('http') || href.startsWith('#');
-    if (isExternal) {
+    // Only same-site paths go through next/link; anchors, mailto:, and full URLs stay plain <a>
+    const isInternalRoute = href.startsWith('/');
+    if (!isInternalRoute) {
       return (
         <a href={href} className={classes} {...anchorProps}>
           {children}

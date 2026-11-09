@@ -1,13 +1,22 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
+import { useSearchParams } from 'next/navigation';
+import Button from '@/components/Button';
+import { CONTACT_TOPICS, isContactTopic, type ContactTopic } from '@/lib/contact';
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
 
+const inputClasses =
+  'w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:border-sky focus:ring-2 focus:ring-sky/20 outline-none transition-colors';
+
 export default function ContactForm() {
+  const topicParam = useSearchParams().get('topic');
+  const initialTopic: ContactTopic | '' = isContactTopic(topicParam) ? topicParam : '';
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    topic: initialTopic,
     subject: '',
     message: '',
   });
@@ -35,7 +44,7 @@ export default function ContactForm() {
       }
 
       setStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      setFormData({ name: '', email: '', topic: initialTopic, subject: '', message: '' });
     } catch (error) {
       setStatus('error');
       setErrorMessage(
@@ -64,14 +73,14 @@ export default function ContactForm() {
               />
             </svg>
           </div>
-          <h3 className="text-xl font-semibold text-foreground mb-2">Message Sent!</h3>
+          <h3 className="text-xl font-semibold text-foreground mb-2">Message sent</h3>
           <p className="text-foreground/70 mb-6">
-            Thank you for reaching out. We&apos;ll get back to you within 24 hours.
+            Thanks for reaching out. We&apos;ll get back to you soon.
           </p>
           <button
             type="button"
             onClick={() => setStatus('idle')}
-            className="text-sky hover:text-teal transition-colors font-medium"
+            className="text-accent hover:underline transition-colors font-medium"
           >
             Send another message
           </button>
@@ -84,7 +93,7 @@ export default function ContactForm() {
     <div className="rounded-2xl border border-border bg-card p-8">
       <form onSubmit={handleSubmit} className="space-y-6">
         {status === 'error' && (
-          <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400 text-sm">
+          <div role="alert" className="p-4 rounded-lg bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400 text-sm">
             {errorMessage}
           </div>
         )}
@@ -100,7 +109,7 @@ export default function ContactForm() {
             required
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:border-sky focus:ring-2 focus:ring-sky/20 outline-none transition-colors"
+            className={inputClasses}
             placeholder="Your name"
             disabled={status === 'submitting'}
           />
@@ -117,15 +126,43 @@ export default function ContactForm() {
             required
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:border-sky focus:ring-2 focus:ring-sky/20 outline-none transition-colors"
+            className={inputClasses}
             placeholder="your@email.com"
             disabled={status === 'submitting'}
           />
         </div>
 
         <div>
+          <label htmlFor="topic" className="block text-sm font-medium text-foreground mb-2">
+            What&apos;s this about?
+          </label>
+          <select
+            id="topic"
+            name="topic"
+            required
+            value={formData.topic}
+            onChange={(e) => setFormData({ ...formData, topic: e.target.value as ContactTopic })}
+            className={`${inputClasses} appearance-none bg-[length:1.25rem] bg-[right_0.75rem_center] bg-no-repeat pr-10`}
+            style={{
+              backgroundImage:
+                "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394A3B8' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E\")",
+            }}
+            disabled={status === 'submitting'}
+          >
+            <option value="" disabled>
+              Choose a topic
+            </option>
+            {Object.entries(CONTACT_TOPICS).map(([value, label]) => (
+              <option key={value} value={value}>
+                {label}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div>
           <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
-            Subject
+            Subject <span className="text-foreground/50 font-normal">(optional)</span>
           </label>
           <input
             type="text"
@@ -133,8 +170,8 @@ export default function ContactForm() {
             name="subject"
             value={formData.subject}
             onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-            className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:border-sky focus:ring-2 focus:ring-sky/20 outline-none transition-colors"
-            placeholder="What's this about?"
+            className={inputClasses}
+            placeholder="A few words"
             disabled={status === 'submitting'}
           />
         </div>
@@ -150,17 +187,13 @@ export default function ContactForm() {
             required
             value={formData.message}
             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-            className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:border-sky focus:ring-2 focus:ring-sky/20 outline-none transition-colors resize-none"
-            placeholder="What's on your mind?"
+            className={`${inputClasses} resize-none`}
+            placeholder="Tell us a little about your business or idea"
             disabled={status === 'submitting'}
           />
         </div>
 
-        <button
-          type="submit"
-          disabled={status === 'submitting'}
-          className="w-full px-6 py-3 bg-gradient-to-r from-sky via-teal to-mint text-slate-950 font-medium rounded-lg hover:opacity-90 transition-opacity disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-        >
+        <Button type="submit" variant="gradient" disabled={status === 'submitting'} className="w-full">
           {status === 'submitting' ? (
             <>
               <svg
@@ -187,9 +220,9 @@ export default function ContactForm() {
               Sending...
             </>
           ) : (
-            'Send Message'
+            'Send message'
           )}
-        </button>
+        </Button>
       </form>
     </div>
   );

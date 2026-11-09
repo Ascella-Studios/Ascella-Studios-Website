@@ -1,7 +1,5 @@
 import { ImageResponse } from 'next/og';
 
-export const runtime = 'edge';
-
 export const alt = 'Ascella Studios - Apps that elevate';
 export const size = {
   width: 1200,
@@ -63,6 +61,21 @@ export default async function Image() {
           }}
         />
 
+        {/* Eyebrow */}
+        <p
+          style={{
+            position: 'absolute',
+            top: '56px',
+            fontSize: '18px',
+            letterSpacing: '4px',
+            textTransform: 'uppercase',
+            color: 'rgba(56, 189, 248, 0.9)',
+            margin: 0,
+          }}
+        >
+          A Frontier Forge Technologies company
+        </p>
+
         {/* Main content */}
         <div
           style={{
@@ -108,7 +121,7 @@ export default async function Image() {
               lineHeight: 1.5,
             }}
           >
-            Small, carefully built apps for everyday life
+            Consumer apps · Websites &amp; consulting for small businesses
           </p>
         </div>
 

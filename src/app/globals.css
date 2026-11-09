@@ -8,6 +8,9 @@
   --foreground: #0F172A;
   --card: #FFFFFF;
   --border: #E2E8F0;
+  /* Text-safe accents: brand hues darkened to pass WCAG AA on light surfaces */
+  --accent: #0369A1;
+  --positive: #15803D;
 }
 
 html.dark {
@@ -15,6 +18,8 @@ html.dark {
   --foreground: #F1F5F9;
   --card: #101626;
   --border: #1E293B;
+  --accent: #38BDF8;
+  --positive: #4ADE80;
   color-scheme: dark;
 }
 
@@ -24,6 +29,8 @@ html.dark {
   --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-positive: var(--positive);
 
   /* Brand tokens — required by Footer and automation-generated pages */
   --color-sky: #38BDF8;
@@ -44,6 +51,17 @@ html.dark {
   );
   background-clip: text;
   color: transparent;
+}
+
+/* Small mono label above headings */
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
 }
 
 body {
@@ -210,7 +228,7 @@ html:not(.dark) .aurora-subtle .aurora-blob {
 }
 
 .legal a {
-  color: var(--color-sky);
+  color: var(--accent);
 }
 
 .legal a:hover {

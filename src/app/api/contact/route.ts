@@ -2,10 +2,12 @@ import { NextRequest, NextResponse } from 'next/server';
 import { Client } from '@hubspot/api-client';
 import { FilterOperatorEnum } from '@hubspot/api-client/lib/codegen/crm/contacts';
 import { AssociationSpecAssociationCategoryEnum } from '@hubspot/api-client/lib/codegen/crm/objects/notes';
+import { CONTACT_TOPICS, isContactTopic } from '@/lib/contact';
 
 interface ContactFormData {
   name: string;
   email: string;
+  topic?: string;
   subject: string;
   message: string;
 }
@@ -13,7 +15,7 @@ interface ContactFormData {
 export async function POST(request: NextRequest) {
   try {
     const body: ContactFormData = await request.json();
-    const { name, email, subject, message } = body;
+    const { name, email, topic, subject, message } = body;
 
     // Validate required fields
     if (!name || !email || !message) {
@@ -21,6 +23,10 @@ export async function POST(request: NextRequest) {
         { error: 'Name, email, and message are required' },
         { status: 400 }
       );
+    }
+
+    if (topic !== undefined && topic !== '' && !isContactTopic(topic)) {
+      return NextResponse.json({ error: 'Please choose a topic' }, { status: 400 });
     }
 
     // Basic email validation
@@ -92,9 +98,11 @@ export async function POST(request: NextRequest) {
       }
 
       // Create a Note engagement with the message
-      const noteBody = subject
-        ? `**Subject:** ${subject}\n\n${message}`
-        : message;
+      const header = [
+        isContactTopic(topic) ? `**Topic:** ${CONTACT_TOPICS[topic]}` : null,
+        subject ? `**Subject:** ${subject}` : null,
+      ].filter(Boolean);
+      const noteBody = header.length ? `${header.join('\n')}\n\n${message}` : message;
 
       await hubspotClient.crm.objects.notes.basicApi.create({
         properties: {
